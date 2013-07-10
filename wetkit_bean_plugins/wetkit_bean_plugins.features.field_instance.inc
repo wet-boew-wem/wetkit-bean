@@ -92,10 +92,10 @@ function wetkit_bean_plugins_field_default_field_instances() {
         'allowed_types' => array(
           'audio' => 0,
           'document' => 0,
+          0 => 0,
           'image' => 'image',
           'video' => 0,
           'wetkit_video' => 0,
-          0 => 0,
         ),
         'browser_plugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
