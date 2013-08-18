@@ -11,6 +11,9 @@ projects[bean][type] = module
 projects[bean][download][type] = git
 projects[bean][download][revision] = b4460f1
 projects[bean][download][branch] = 7.x-1.x
+projects[bean][patch][1957986] = http://drupal.org/files/fix_deploy-1957986-03.patch
+projects[bean][patch][2060831] = http://drupal.org/files/bean_save_menu_rebuild-2060831-11.patch
+projects[bean][patch][2061725] = http://drupal.org/files/uuid_revisions-2061725.patch
 
 projects[bean_panels][version] = 1.x-dev
 projects[bean_panels][subdir] = contrib
