@@ -60,6 +60,7 @@ function wetkit_bean_plugins_image_default_styles() {
         'weight' => 2,
       ),
     ),
+    'label' => 'highlighted',
   );
 
   return $styles;

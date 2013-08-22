@@ -90,9 +90,9 @@ function wetkit_bean_plugins_field_default_field_instances() {
           'public' => 'public',
         ),
         'allowed_types' => array(
+          0 => 0,
           'audio' => 0,
           'document' => 0,
-          0 => 0,
           'image' => 'image',
           'video' => 0,
           'wetkit_video' => 0,
