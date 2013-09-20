@@ -21,7 +21,7 @@ function wetkit_bean_defaultconfig_features() {
 function wetkit_bean_defaultconfig_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: view any wetkit_bean bean.
+  // Exported permission: 'view any wetkit_bean bean'.
   $permissions['view any wetkit_bean bean'] = array(
     'name' => 'view any wetkit_bean bean',
     'roles' => array(
