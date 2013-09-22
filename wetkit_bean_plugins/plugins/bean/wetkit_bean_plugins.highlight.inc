@@ -46,14 +46,14 @@ class WetKitHighlightBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
-    // Link Field
+    // Link Field.
     $link_path = field_get_items('bean', $bean, 'field_bean_highlight_link');
     if (isset($link_path[0])) {
       $link_url = $link_path[0]['display_url'];
     }
 
-    // Content Fields
-    foreach($content['bean'] as &$child) {
+    // Content Fields.
+    foreach ($content['bean'] as &$child) {
       if (isset($link_url)) {
         $child['field_bean_highlight_image'][0]['file']['#prefix'] = '<a href="' . $link_url . '">';
         $child['field_bean_highlight_image'][0]['file']['#suffix'] = '</a>';

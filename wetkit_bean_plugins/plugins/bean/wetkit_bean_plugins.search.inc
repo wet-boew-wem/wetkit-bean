@@ -74,20 +74,20 @@ class WetKitSearchBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
-    // Title Field
+    // Title Field.
     $title = field_get_items('bean', $bean, 'title_field');
     $title = field_view_value('bean', $bean, 'title_field', $title[0], array());
     $title = render($title);
 
-    // Search Path
+    // Search Path.
     $search_path = field_get_items('bean', $bean, 'field_bean_search_path');
     $search_path = field_view_value('bean', $bean, 'field_bean_search_path', $search_path[0], array());
     $search_path = render($search_path);
 
-    // Background Styles
+    // Background Styles.
     $background = isset($bean->title_settings['backgrounds']) ? $bean->title_settings['backgrounds'] : '';
 
-    // Placeholder Value
+    // Placeholder Value.
     $placeholder = isset($bean->search_placeholder['placeholder_text']) ? $bean->search_placeholder['placeholder_text'] : '';
 
     // Unique ID for Accessibility.

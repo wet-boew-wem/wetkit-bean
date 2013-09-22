@@ -63,24 +63,23 @@ class WetKitShareBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
-    // Span
     $span = isset($bean->share_settings['configure_share_widget']) ? $bean->share_settings['configure_share_widget'] : '';
     $custom_css = isset($bean->share_settings['custom_css']) ? $bean->share_settings['custom_css'] : '';
 
-    // Sites
+    // Sites.
     $sites = '';
-    foreach ($bean->field_share_widget['und'] as $service) {
+    foreach ($bean->field_share_widget[LANGUAGE_NONE] as $service) {
       $sites[] = '"' . $service['value'] . '"';
     }
     if (!empty($sites)) {
       $sites = '[' . implode(",", $sites) . ']';
     }
     else {
-	  $sites = '[]';
+	   $sites = '[]';
     }
-    
+
     $content = array();
-    $markup ='<div class="wet-boew-share ' . $span . ' ' . $custom_css . ' margin-bottom-none align-right" data-wet-boew=\'{"sites": ' . $sites . '}\'></div>';
+    $markup = '<div class="wet-boew-share ' . $span . ' ' . $custom_css . ' margin-bottom-none align-right" data-wet-boew=\'{"sites": ' . $sites . '}\'></div>';
     $content['share_bean']['#markup'] = $markup;
 
     return $content;

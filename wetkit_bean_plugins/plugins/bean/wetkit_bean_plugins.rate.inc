@@ -63,13 +63,13 @@ class WetKitRateBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
-    // Settings
+    // Settings.
     $span = isset($bean->rate_settings['configure_rate_widget_span']) ? $bean->rate_settings['configure_rate_widget_span'] : '';
     $machine_name = isset($bean->rate_settings['rate_machine_name']) ? $bean->rate_settings['rate_machine_name'] : '';
 
     $content = array();
-    if (arg(0) == 'node' && is_numeric(arg(1)) && ($node = node_load(arg(1))) && ($machine_name != '')) { 
-      $markup = rate_embed($node, $machine_name); 
+    if (arg(0) == 'node' && is_numeric(arg(1)) && ($node = node_load(arg(1))) && ($machine_name != '')) {
+      $markup = rate_embed($node, $machine_name);
     }
     else {
       $markup = '<p>' . t('There is no node context for the rate widget to leverage.') . '</p>';

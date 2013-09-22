@@ -63,7 +63,6 @@ class WetKitTwitterBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
-    // Span
     $span = isset($bean->twitter_settings['configure_twitter_widget']) ? $bean->twitter_settings['configure_twitter_widget'] : '';
     $custom_css = isset($bean->twitter_settings['custom_css']) ? $bean->twitter_settings['custom_css'] : '';
 
