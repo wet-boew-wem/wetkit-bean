@@ -316,6 +316,45 @@ function wetkit_bean_plugins_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'bean-wetkit_share-field_share_widget'
+  $field_instances['bean-wetkit_share-field_share_widget'] = array(
+    'bundle' => 'wetkit_share',
+    'default_value' => array(
+      0 => array(
+        'value' => 'facebook',
+      ),
+      1 => array(
+        'value' => 'twitter',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'field_share_widget',
+    'label' => 'Share Widget',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 2,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Bean Highlight Description');
@@ -324,6 +363,7 @@ function wetkit_bean_plugins_field_default_field_instances() {
   t('Bean Highlight Link Text');
   t('Bean Search  Path');
   t('Please insert the description for this highlighted region.');
+  t('Share Widget');
   t('The Title of the block.');
   t('Title');
 
