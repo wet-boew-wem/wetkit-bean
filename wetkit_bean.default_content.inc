@@ -136,7 +136,7 @@ function _wetkit_bean_load() {
           'value' => '<div id="gcwu-connect" class="span-6"><h2>Restez branchés</h2><ul>
   <li><a href="http://twitter.com/#!/"><img alt="Twitter" class="image-actual" src="/profiles/wetkit/modules/custom/wetkit_wetboew/images/sl_twitter.png" /></a></li>
   <li><a href="http://www.youtube.com/"> <img alt="YouTube" class="image-actual" src="/profiles/wetkit/modules/custom/wetkit_wetboew/images/sl_youtube.png" /></a></li>
-  <li><a href="/rss.xml"> <img alt="RSS" class="image-actual" src="/profiles/wetkit/modules/custom/wetkit_wetboew/images/sl_rss.png" /></a></li>
+  <li><a href="/fr/rss.xml"> <img alt="RSS" class="image-actual" src="/profiles/wetkit/modules/custom/wetkit_wetboew/images/sl_rss.png" /></a></li>
 </ul></div>',
           'format' => 'wetkit_wysiwyg_text',
         ),
