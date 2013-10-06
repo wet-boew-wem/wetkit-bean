@@ -27,11 +27,11 @@
  * @see template_process()
  */
 ?>
-<div  class="gcwu-minister">
+<div class="gcwu-minister">
   <section>
     <?php
       unset($content['title_field']);
       print render($content);
-    ?>  
+    ?>
   </section>
 </div>

@@ -27,8 +27,7 @@
  * @see template_process()
  */
 ?>
-<div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-
+<div class="<?php print $classes; ?>">
   <div class="content"<?php print $content_attributes; ?>>
     <?php
       unset($content['title_field']);
