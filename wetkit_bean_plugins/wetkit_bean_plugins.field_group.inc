@@ -56,9 +56,9 @@ function wetkit_bean_plugins_field_group_info() {
     'weight' => '1',
     'children' => array(
       0 => 'field_bean_highlight_description',
-      1 => 'field_bean_highlight_link_text',
+      1 => 'field_bean_highlight_image',
       2 => 'field_bean_highlight_link',
-      3 => 'field_bean_highlight_image',
+      3 => 'field_bean_highlight_link_text',
     ),
     'format_type' => 'div',
     'format_settings' => array(
