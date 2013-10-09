@@ -21,3 +21,6 @@ projects[bean_panels][type] = module
 projects[bean_panels][download][type] = git
 projects[bean_panels][download][revision] = 3a7d7f2
 projects[bean_panels][download][branch] = 7.x-1.x
+
+projects[image_link_formatter][version] = 1.x-dev
+projects[image_link_formatter][subdir] = contrib
