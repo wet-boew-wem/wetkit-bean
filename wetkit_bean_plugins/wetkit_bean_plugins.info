@@ -6,6 +6,7 @@ dependencies[] = ctools
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = image
+dependencies[] = image_link_formatter
 dependencies[] = link
 dependencies[] = list
 dependencies[] = media

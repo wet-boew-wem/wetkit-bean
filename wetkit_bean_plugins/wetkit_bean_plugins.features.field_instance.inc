@@ -57,12 +57,12 @@ function wetkit_bean_plugins_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
+        'module' => 'image_link_formatter',
         'settings' => array(
-          'image_link' => 'content',
+          'image_link' => 'field_bean_highlight_link',
           'image_style' => 'highlighted',
         ),
-        'type' => 'image',
+        'type' => 'image_link_formatter',
         'weight' => 2,
       ),
     ),
