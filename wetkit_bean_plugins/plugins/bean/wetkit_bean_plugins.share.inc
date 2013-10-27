@@ -75,7 +75,7 @@ class WetKitShareBean extends BeanPlugin {
       $sites = '[' . implode(",", $sites) . ']';
     }
     else {
-	   $sites = '[]';
+	    $sites = '[]';
     }
 
     $content = array();

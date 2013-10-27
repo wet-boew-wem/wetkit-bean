@@ -29,9 +29,6 @@
 ?>
 <section>
   <?php
-    if (empty($title_field[0]['safe_value'])) {
-      unset($content['title_field']);
-    }
     print render($content);
   ?>
 </section>
