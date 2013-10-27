@@ -17,3 +17,13 @@ function wetkit_bean_uninstall() {
     }
   }
 }
+
+/**
+ * Implements hook_update_n().
+ */
+function wetkit_bean_update_7101() {
+  if(module_exists('bean_panels')) {
+    module_disable(array('bean_panels'));
+    drupal_uninstall_modules(array('bean_panels'));
+  }
+}
