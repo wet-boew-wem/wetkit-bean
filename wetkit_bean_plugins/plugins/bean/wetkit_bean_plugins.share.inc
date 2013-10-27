@@ -75,9 +75,8 @@ class WetKitShareBean extends BeanPlugin {
       $sites = '[' . implode(",", $sites) . ']';
     }
     else {
-	    $sites = '[]';
+      $sites = '[]';
     }
-
     $content = array();
     $markup = '<div class="wet-boew-share ' . $span . ' ' . $custom_css . ' margin-bottom-none align-right" data-wet-boew=\'{"sites": ' . $sites . '}\'></div>';
     $content['share_bean']['#markup'] = $markup;
