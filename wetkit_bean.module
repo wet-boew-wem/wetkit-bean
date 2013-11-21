@@ -8,6 +8,88 @@ include_once 'wetkit_bean.default_content.inc';
 include_once 'wetkit_bean.features.inc';
 
 /**
+ * Implements hook_bean_types_api_info().
+ */
+function wetkit_bean_bean_types_api_info() {
+  return array('api' => 4);
+}
+
+/**
+ * Implements hook_bean_types().
+ */
+function wetkit_bean_bean_types() {
+  $plugins = array();
+  $plugin_path = drupal_get_path('module', 'wetkit_bean') . '/plugins/bean';
+
+  $plugins['wetkit_highlight'] = array(
+    'label' => t('Highlight'),
+    'description' => t('A highlighted bean for displaying important blocks.'),
+    'handler' => array(
+      'class' => 'WetKitHighlightBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.highlight.inc',
+    ),
+  );
+  $plugins['wetkit_search'] = array(
+    'label' => t('Search'),
+    'description' => t('A custom search bean for displaying search boxes.'),
+    'handler' => array(
+      'class' => 'WetKitSearchBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.search.inc',
+    ),
+  );
+  $plugins['wetkit_rate'] = array(
+    'label' => t('Rate'),
+    'description' => t('A custom rate bean for displaying a fivestar widget.'),
+    'handler' => array(
+      'class' => 'WetKitRateBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.rate.inc',
+    ),
+  );
+  $plugins['wetkit_share'] = array(
+    'label' => t('Share'),
+    'description' => t('A custom share bean for displaying share widgets.'),
+    'handler' => array(
+      'class' => 'WetKitShareBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.share.inc',
+    ),
+  );
+  $plugins['wetkit_twitter'] = array(
+    'label' => t('Twitter'),
+    'description' => t('A custom twitter bean for displaying twitter widgets.'),
+    'handler' => array(
+      'class' => 'WetKitTwitterBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.twitter.inc',
+    ),
+  );
+
+  return $plugins;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function wetkit_bean_theme() {
+  $items = array();
+  $items['wetkit_highlight_settings'] = array(
+    'arguments' => array(
+      'image_style' => NULL,
+    ),
+    'file' => 'theme/wetkit_bean.theme.inc',
+  );
+  return $items;
+}
+
+/**
  * Implements hook_page_build().
  */
 function wetkit_bean_page_build() {

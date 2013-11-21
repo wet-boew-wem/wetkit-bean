@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * wetkit_bean_plugins.field_group.inc
+ * wetkit_bean.field_group.inc
  */
 
 /**
  * Implements hook_field_group_info().
  */
-function wetkit_bean_plugins_field_group_info() {
+function wetkit_bean_field_group_info() {
   $export = array();
 
   $field_group = new stdClass();
