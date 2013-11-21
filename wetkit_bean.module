@@ -41,6 +41,16 @@ function wetkit_bean_bean_types() {
       'file' => 'wetkit_bean.search.inc',
     ),
   );
+  $plugins['wetkit_slide'] = array(
+    'label' => t('Slideshow'),
+    'description' => t('A slideshow bean for displaying rotating blocks.'),
+    'handler' => array(
+      'class' => 'WetKitSlideBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.slide.inc',
+    ),
+  );
   $plugins['wetkit_rate'] = array(
     'label' => t('Rate'),
     'description' => t('A custom rate bean for displaying a fivestar widget.'),
@@ -80,12 +90,40 @@ function wetkit_bean_bean_types() {
  */
 function wetkit_bean_theme() {
   $items = array();
+
   $items['wetkit_highlight_settings'] = array(
     'arguments' => array(
       'image_style' => NULL,
     ),
     'file' => 'theme/wetkit_bean.theme.inc',
   );
+  $items['wetkit_slide_collection'] = array(
+    'file' => 'theme/wetkit_bean.theme.inc',
+    'variables' => array(
+      'bean' => NULL,
+      'items' => NULL,
+      'use_pager' => TRUE
+    ),
+  );
+  $items['wetkit_slide_header'] = array(
+    'file' => 'theme/wetkit_bean.theme.inc',
+    'variables' => array(
+      'items' => NULL,
+      'title' => NULL,
+      'type' => NULL,
+      'attributes' => NULL
+    ),
+  );
+  $items['wetkit_slide_tab_panels'] = array(
+    'file' => 'theme/wetkit_bean.theme.inc',
+    'variables' => array(
+      'items' => NULL,
+      'title' => NULL,
+      'type' => NULL,
+      'attributes' => NULL
+    ),
+  );
+
   return $items;
 }
 
@@ -97,6 +135,16 @@ function wetkit_bean_page_build() {
     'group' => CSS_THEME,
     'every_page' => TRUE,
   ));
+}
+
+/**
+ * Implements hook_preprocess_image_style().
+ */
+function wetkit_bean_preprocess_image_style(&$variables) {
+  $variables['attributes']['class'][] = str_replace('_', '-', $variables['style_name']);
+
+  // TODO: Force all image styles to use image-actual.
+  $variables['attributes']['class'][] = 'image-actual';
 }
 
 /**
@@ -118,6 +166,233 @@ function wetkit_bean_preprocess_entity(&$variables) {
 function wetkit_bean_apps_app_info() {
   return array(
     'configure form' => 'wetkit_bean_configure_form',
+  );
+}
+
+/**
+ * Implements hook_contextual_links_view_alter().
+ * Customize our contextual links as per our display settings.
+ *
+ * (contextual.module should probably provide a better way of adding/customizing
+ * these links - currently it's very tied to the menu system).
+ */
+function field_collection_contextual_links_view_alter(&$element, &$items) {
+  // We only want our own contextual links
+  if (isset($element['#element']['#field']['type']) && $element['#element']['#field']['type'] === 'field_collection') {
+
+    if (!empty($element['#element']['#display']['settings']) && !empty($element['#links'])) {
+
+      $display_settings = $element['#element']['#display']['settings'];
+
+      foreach ($element['#links'] as $key => $link) {
+
+        // The keys of the links have the form: MODULENAME-LASTPATHSEGMENT
+        // @see menu_contextual_links() in menu.inc and
+        // @see contextual_pre_render_links() in contextual.module.
+        if (strpos($key, 'field-collection-') === 0) {
+          $op = substr($key, strlen('field-collection-'));
+          if (isset($display_settings[$op])) {
+
+            // Empty string indicates user does not want the link at all
+            if ($display_settings[$op] === '') {
+              unset($element['#links'][$key]);
+            }
+            // Otherwise just override the title with the setting
+            else {
+              $element['#links'][$key]['title'] = $display_settings[$op];
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function wetkit_bean_field_formatter_info() {
+  return array(
+    'wetkit_slide_collection' => array(
+      'label' => t('Slideshow'),
+      'field types' => array('field_collection'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'wetkit_slide_collection':
+
+      // Determine if the entity is a Bean Slide.
+      $is_bean_slide = FALSE;
+      if ($entity_type === 'bean' && ($info = $entity->getInfo())) {
+        $is_bean_slide = $info['name'] === 'wetkit_slide';
+      }
+
+      $list_items = array();
+      foreach ($items as $delta => $item) {
+        if ($field_collection = field_collection_field_get_entity($item)) {
+          // Useful data for those interested in altering
+          $list_item = array();
+          $list_item['entity'] = $field_collection->view();
+          $list_item['#entity_type'] = $entity_type;
+          $list_item['#field'] = &$field;
+          $list_item['#instance'] = &$instance;
+          $list_item['#display'] = &$display;
+          $list_item['#field_collection_item'] = $field_collection;
+          $list_item['#theme_wrappers'] = array('field_collection_view');
+          $list_item['#attributes']['class'][] = 'field-collection-view';
+
+          // Add admin links for each item as contextual links.
+          $list_item['contextual_links'] = array(
+            '#type' => 'contextual_links',
+            '#contextual_links' => array(
+              'field_collection' => array(field_collection_field_get_path($field_collection->fieldInfo()), array($field_collection->item_id)),
+            ),
+            '#element' => $list_item,
+          );
+
+          if ($is_bean_slide) {
+            // There's always one entry in field_collection_item, but its key varies.
+            $key = array_keys($list_item['entity']['field_collection_item']);
+            $key = array_pop($key);
+
+            // Set (okay, monkey-patch) the image style for each slide image.
+            $image_style = &$list_item['entity']['field_collection_item'][$key]['field_slide_image'][0]['#image_style'];
+            if ($entity->data['image_style'] == '<none>') {
+              $image_style = NULL;
+            }
+            else {
+              $image_style = $entity->data['image_style'];
+            }
+          }
+
+          $list_item['#attributes']['class'][] = 'contextual-links-region';
+          $list_items[] = array(
+            'data' => $list_item,
+            'class' => array('item-' . $delta),
+          );
+        }
+      }
+
+      $element = array(
+        '#theme' => 'wetkit_slide_collection',
+        '#bean' => $entity,
+        '#items' => $list_items,
+        '#use_pager' => TRUE,
+      );
+      break;
+  }
+
+  return $element;
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function wetkit_bean_block_view_alter(&$data, $block) {
+  // Add "add" link to block contextual links.
+  if ($block->module == 'bean' && isset($data['content']) && is_array($data['content']) && array_key_exists('bean', $data['content'])) {
+    foreach ($data['content']['bean'] as $id => $bean) {
+      if ($bean['#bundle'] == 'wetkit_slide') {
+        $field = field_info_field('field_slide');
+        $path = field_collection_field_get_path($field);
+        $data['content']['#contextual_links']['field_collection'] = array($path . '/add', array('bean', $id));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function wetkit_bean_form_bean_form_alter(&$form, $form_state) {
+  // provide a simpler form for ordering and editing slides.
+  if ($form['#bundle'] == 'wetkit_slide') {
+    $path = drupal_get_path('module', 'wetkit_bean');
+    drupal_add_js($path . '/js/wetkit_bean.admin.js');
+    drupal_add_css($path . '/css/wetkit_bean.admin.css');
+
+    $form['#submit'][] = 'wetkit_bean_form_bean_form_submit';
+  }
+}
+
+/**
+ * Submit callback for bean slide form to redirect.
+ */
+function wetkit_bean_form_bean_form_submit($form, &$form_state) {
+  if (isset($_GET['destination'])) {
+    $destination = drupal_get_destination();
+    $form_state['redirect'] = $destination['destination'];
+  }
+}
+
+/**
+ * Returns the plugin object for the given plugin type.
+ */
+function wetkit_bean_get_plugin($type) {
+  if (empty($type)) {
+    $type = 'wetkit_slide:null';
+  }
+
+  $plugins = &drupal_static(__FUNCTION__, array());
+  if (!isset($plugins[$type])) {
+    $plugin_info = wetkit_bean_get_plugin_info($type);
+    try {
+      $plugins[$type] = new $plugin_info['class']();
+    }
+    catch (Exception $e) {
+      watchdog('wetkit_bean', 'Bad bean plugin type: @type', array('@type' => $type));
+      throw $e;
+    }
+  }
+  return $plugins[$type];
+}
+
+/**
+ * Returns plugin info array for the given plugin type.
+ */
+function wetkit_bean_get_plugin_info($type) {
+  if ($type === 'wetkit_slide:null') {
+    return array(
+      'name' => t('Missing plugin'),
+      'description' => t('Plugin not selected, or missing.'),
+      'class' => 'WetKitBeanSlideNullPlugin',
+    );
+  }
+  $plugin_info = wetkit_bean_get_plugin_info_all();
+  return isset($plugin_info[$type]) ? $plugin_info[$type] : FALSE;
+}
+
+/**
+ * Returns plugin info array for all plugin types.
+ */
+function wetkit_bean_get_plugin_info_all() {
+  $plugin_info = &drupal_static(__FUNCTION__, array());
+  if (empty($plugin_info)) {
+    $plugin_info = module_invoke_all('wetkit_bean_plugin_info');
+    drupal_alter('wetkit_bean_plugin_info', $plugin_info);
+  }
+  return $plugin_info;
+}
+
+/**
+ * Implements hook_wetkit_bean_plugin_info().
+ */
+function wetkit_bean_wetkit_bean_plugin_info() {
+  return array(
+    'wetkit_slide:tabbedinterface' => array(
+      'name' => t('WetKit Slide: Tabbed Interface'),
+      'description' => t('WET-BOEW Tabbed Interface'),
+      'url' => 'http://wet-boew.github.com',
+      'class' => 'WetKitBeanSlideTabbedInterfacePlugin',
+      'responsive' => TRUE,
+    ),
   );
 }
 
