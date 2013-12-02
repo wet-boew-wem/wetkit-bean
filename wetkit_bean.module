@@ -31,6 +31,16 @@ function wetkit_bean_bean_types() {
       'file' => 'wetkit_bean.highlight.inc',
     ),
   );
+  $plugins['wetkit_media'] = array(
+    'label' => t('Media'),
+    'description' => t('A custom bean for displaying accessible media.'),
+    'handler' => array(
+      'class' => 'WetKitMediaBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.media.inc',
+    ),
+  );
   $plugins['wetkit_search'] = array(
     'label' => t('Search'),
     'description' => t('A custom search bean for displaying search boxes.'),
@@ -39,6 +49,16 @@ function wetkit_bean_bean_types() {
       'parent' => 'bean',
       'path' => $plugin_path,
       'file' => 'wetkit_bean.search.inc',
+    ),
+  );
+  $plugins['wetkit_share'] = array(
+    'label' => t('Share'),
+    'description' => t('A custom share bean for displaying share widgets.'),
+    'handler' => array(
+      'class' => 'WetKitShareBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.share.inc',
     ),
   );
   $plugins['wetkit_slide'] = array(
@@ -59,16 +79,6 @@ function wetkit_bean_bean_types() {
       'parent' => 'bean',
       'path' => $plugin_path,
       'file' => 'wetkit_bean.rate.inc',
-    ),
-  );
-  $plugins['wetkit_share'] = array(
-    'label' => t('Share'),
-    'description' => t('A custom share bean for displaying share widgets.'),
-    'handler' => array(
-      'class' => 'WetKitShareBean',
-      'parent' => 'bean',
-      'path' => $plugin_path,
-      'file' => 'wetkit_bean.share.inc',
     ),
   );
   $plugins['wetkit_twitter'] = array(
@@ -123,6 +133,14 @@ function wetkit_bean_theme() {
       'attributes' => NULL
     ),
   );
+  $items['wetkit_media_collection'] = array(
+    'file' => 'theme/wetkit_bean.theme.inc',
+    'variables' => array(
+      'bean' => NULL,
+      'items' => NULL,
+      'use_pager' => TRUE
+    ),
+  );
 
   return $items;
 }
@@ -135,6 +153,15 @@ function wetkit_bean_page_build() {
     'group' => CSS_THEME,
     'every_page' => TRUE,
   ));
+}
+
+/**
+ * Alter default file types.
+ *
+ * @see hook_file_default_types()
+ */
+function wetkit_bean_file_default_types_alter(&$types) {
+  $types['document']->mimetypes[] = 'text/html';
 }
 
 /**
@@ -217,6 +244,10 @@ function wetkit_bean_field_formatter_info() {
       'label' => t('Slideshow'),
       'field types' => array('field_collection'),
     ),
+    'wetkit_media_collection' => array(
+      'label' => t('Media'),
+      'field types' => array('field_collection'),
+    ),
   );
 }
 
@@ -226,6 +257,8 @@ function wetkit_bean_field_formatter_info() {
 function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
   switch ($display['type']) {
+
+    // Slideshow
     case 'wetkit_slide_collection':
 
       // Determine if the entity is a Bean Slide.
@@ -287,6 +320,69 @@ function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instan
         '#use_pager' => TRUE,
       );
       break;
+
+    // Media
+    case 'wetkit_media_collection':
+
+      // Determine if the entity is a Bean Slide.
+      $is_bean_media = FALSE;
+      if ($entity_type === 'bean' && ($info = $entity->getInfo())) {
+        $is_bean_media = $info['name'] === 'wetkit_media';
+      }
+
+      $list_items = array();
+      foreach ($items as $delta => $item) {
+        if ($field_collection = field_collection_field_get_entity($item)) {
+          // Useful data for those interested in altering
+          $list_item = array();
+          $list_item['entity'] = $field_collection->view();
+          $list_item['#entity_type'] = $entity_type;
+          $list_item['#field'] = &$field;
+          $list_item['#instance'] = &$instance;
+          $list_item['#display'] = &$display;
+          $list_item['#field_collection_item'] = $field_collection;
+          $list_item['#theme_wrappers'] = array('field_collection_view');
+          $list_item['#attributes']['class'][] = 'field-collection-view';
+
+          // Add admin links for each item as contextual links.
+          $list_item['contextual_links'] = array(
+            '#type' => 'contextual_links',
+            '#contextual_links' => array(
+              'field_collection' => array(field_collection_field_get_path($field_collection->fieldInfo()), array($field_collection->item_id)),
+            ),
+            '#element' => $list_item,
+          );
+
+          if ($is_bean_media) {
+            // There's always one entry in field_collection_item, but its key varies.
+            $key = array_keys($list_item['entity']['field_collection_item']);
+            $key = array_pop($key);
+
+            // Set (okay, monkey-patch) the image style for each slide image.
+            $image_style = &$list_item['entity']['field_collection_item'][$key]['field_media_poster'][0]['#image_style'];
+            if ($entity->data['image_style'] == '<none>') {
+              $image_style = NULL;
+            }
+            else {
+              $image_style = $entity->data['image_style'];
+            }
+          }
+
+          $list_item['#attributes']['class'][] = 'contextual-links-region';
+          $list_items[] = array(
+            'data' => $list_item,
+            'class' => array('item-' . $delta),
+          );
+        }
+      }
+
+      $element = array(
+        '#theme' => 'wetkit_media_collection',
+        '#bean' => $entity,
+        '#items' => $list_items,
+        '#use_pager' => TRUE,
+      );
+      break;
   }
 
   return $element;
@@ -304,6 +400,11 @@ function wetkit_bean_block_view_alter(&$data, $block) {
         $path = field_collection_field_get_path($field);
         $data['content']['#contextual_links']['field_collection'] = array($path . '/add', array('bean', $id));
       }
+      elseif ($bean['#bundle'] == 'wetkit_media') {
+        $field = field_info_field('field_media');
+        $path = field_collection_field_get_path($field);
+        $data['content']['#contextual_links']['field_collection'] = array($path . '/add', array('bean', $id));
+      }
     }
   }
 }
@@ -314,6 +415,14 @@ function wetkit_bean_block_view_alter(&$data, $block) {
 function wetkit_bean_form_bean_form_alter(&$form, $form_state) {
   // provide a simpler form for ordering and editing slides.
   if ($form['#bundle'] == 'wetkit_slide') {
+    $path = drupal_get_path('module', 'wetkit_bean');
+    drupal_add_js($path . '/js/wetkit_bean.admin.js');
+    drupal_add_css($path . '/css/wetkit_bean.admin.css');
+
+    $form['#submit'][] = 'wetkit_bean_form_bean_form_submit';
+  }
+  // provide a simpler form for ordering and editing videos.
+  if ($form['#bundle'] == 'wetkit_media') {
     $path = drupal_get_path('module', 'wetkit_bean');
     drupal_add_js($path . '/js/wetkit_bean.admin.js');
     drupal_add_css($path . '/css/wetkit_bean.admin.css');

@@ -172,3 +172,93 @@ function theme_wetkit_slide_tab_panels($variables) {
   }
   return $output;
 }
+
+/**
+ * Themes a field collection to match a Video pattern.
+ */
+function theme_wetkit_media_collection($variables) {
+  $bean      = $variables['bean'];
+  $items     = $variables['items'];
+  $use_pager = $variables['use_pager'];
+
+  $media_attributes = array();
+  $source_attributes = array();
+  $track_attributes = array();
+  $wrapper_attributes = array();
+  $type_of_media = '';
+  $output = '';
+
+  // Collect media.
+  foreach ($items as $item_key => $data) {
+    $key = array_keys($data['data']['entity']['field_collection_item']);
+    $key = array_pop($key);
+    $item = $data['data']['entity']['field_collection_item'][$key];
+
+    $source_attributes = array(
+      'src' => file_create_url($item['field_media_file'][0]['#file']->uri),
+      'type' => $item['field_media_file'][0]['#file']->filemime,
+    );
+
+    $audio_types = array(
+      'audio/mpeg',
+      'audio/ogg',
+    );
+    if (in_array($item['field_media_file'][0]['#file']->filemime, $audio_types)) {
+      $type_of_media = 'audio';
+    }
+    else {
+      $type_of_media = 'video';
+    }
+  }
+
+  // Collect the poster.
+  $poster = array();
+  foreach ($items as $item_key => $data) {
+    $key = array_keys($data['data']['entity']['field_collection_item']);
+    $key = array_pop($key);
+    $item = &$data['data']['entity']['field_collection_item'][$key];
+
+    if ($bean->data['image_style'] == '<none>') {
+      $poster[] = file_create_url($item['field_media_poster'][0]['#item']['uri']);
+    }
+    else {
+      $poster[] = image_style_url($item['field_media_poster'][0]['#image_style'], $item['field_media_poster'][0]['#item']['uri']);
+    }
+  }
+
+  // Attribute handling.
+  $media_attributes['width'] = '480';
+  $media_attributes['height'] = '270';
+  if ($type_of_media == 'video') {
+    $media_attributes['poster'] = $poster;
+  }
+  $wrapper_attributes['class'] = 'wet-boew-multimedia ' . $bean->media_span;
+
+  // Collect the caption.
+  foreach ($items as $item_key => $data) {
+    $key = array_keys($data['data']['entity']['field_collection_item']);
+    $key = array_pop($key);
+    $item = $data['data']['entity']['field_collection_item'][$key];
+
+    $track_attributes = array(
+      'data-type' => $item['field_media_caption'][0]['#file']->filemime,
+      'kind' => 'captions',
+      'src' => file_create_url($item['field_media_caption'][0]['#file']->uri),
+    );
+  }
+
+  // Final Render.
+  if ($type_of_media == 'audio') {
+    $output .= '<div' . drupal_attributes($wrapper_attributes) . '><audio' . drupal_attributes($media_attributes) . '>';
+    $output .= '<source' . drupal_attributes($source_attributes) . ' />';
+    $output .= '</audio></div>';
+  }
+  else {
+    $output .= '<div' . drupal_attributes($wrapper_attributes) . '><video' . drupal_attributes($media_attributes) . '>';
+    $output .= '<source' . drupal_attributes($source_attributes) . ' />';
+    $output .= '<track' . drupal_attributes($track_attributes) . ' />';
+    $output .= '</video></div>';
+  }
+
+  return $output;
+}
