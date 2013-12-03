@@ -112,7 +112,7 @@ function wetkit_bean_theme() {
     'variables' => array(
       'bean' => NULL,
       'items' => NULL,
-      'use_pager' => TRUE
+      'use_pager' => TRUE,
     ),
   );
   $items['wetkit_slide_header'] = array(
@@ -121,7 +121,7 @@ function wetkit_bean_theme() {
       'items' => NULL,
       'title' => NULL,
       'type' => NULL,
-      'attributes' => NULL
+      'attributes' => NULL,
     ),
   );
   $items['wetkit_slide_tab_panels'] = array(
@@ -130,7 +130,7 @@ function wetkit_bean_theme() {
       'items' => NULL,
       'title' => NULL,
       'type' => NULL,
-      'attributes' => NULL
+      'attributes' => NULL,
     ),
   );
   $items['wetkit_media_collection'] = array(
@@ -138,7 +138,7 @@ function wetkit_bean_theme() {
     'variables' => array(
       'bean' => NULL,
       'items' => NULL,
-      'use_pager' => TRUE
+      'use_pager' => TRUE,
     ),
   );
 
@@ -198,13 +198,14 @@ function wetkit_bean_apps_app_info() {
 
 /**
  * Implements hook_contextual_links_view_alter().
+ *
  * Customize our contextual links as per our display settings.
  *
  * (contextual.module should probably provide a better way of adding/customizing
  * these links - currently it's very tied to the menu system).
  */
 function field_collection_contextual_links_view_alter(&$element, &$items) {
-  // We only want our own contextual links
+  // We only want our own contextual links.
   if (isset($element['#element']['#field']['type']) && $element['#element']['#field']['type'] === 'field_collection') {
 
     if (!empty($element['#element']['#display']['settings']) && !empty($element['#links'])) {
@@ -213,18 +214,17 @@ function field_collection_contextual_links_view_alter(&$element, &$items) {
 
       foreach ($element['#links'] as $key => $link) {
 
-        // The keys of the links have the form: MODULENAME-LASTPATHSEGMENT
         // @see menu_contextual_links() in menu.inc and
         // @see contextual_pre_render_links() in contextual.module.
         if (strpos($key, 'field-collection-') === 0) {
           $op = substr($key, strlen('field-collection-'));
           if (isset($display_settings[$op])) {
 
-            // Empty string indicates user does not want the link at all
+            // Empty string indicates user does not want the link at all.
             if ($display_settings[$op] === '') {
               unset($element['#links'][$key]);
             }
-            // Otherwise just override the title with the setting
+            // Otherwise just override the title with the setting.
             else {
               $element['#links'][$key]['title'] = $display_settings[$op];
             }
@@ -258,7 +258,7 @@ function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instan
   $element = array();
   switch ($display['type']) {
 
-    // Slideshow
+    // Slideshow.
     case 'wetkit_slide_collection':
 
       // Determine if the entity is a Bean Slide.
@@ -270,7 +270,7 @@ function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instan
       $list_items = array();
       foreach ($items as $delta => $item) {
         if ($field_collection = field_collection_field_get_entity($item)) {
-          // Useful data for those interested in altering
+          // Useful data for those interested in altering.
           $list_item = array();
           $list_item['entity'] = $field_collection->view();
           $list_item['#entity_type'] = $entity_type;
@@ -321,7 +321,7 @@ function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instan
       );
       break;
 
-    // Media
+    // Media.
     case 'wetkit_media_collection':
 
       // Determine if the entity is a Bean Slide.
@@ -333,7 +333,7 @@ function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instan
       $list_items = array();
       foreach ($items as $delta => $item) {
         if ($field_collection = field_collection_field_get_entity($item)) {
-          // Useful data for those interested in altering
+          // Useful data for those interested in altering.
           $list_item = array();
           $list_item['entity'] = $field_collection->view();
           $list_item['#entity_type'] = $entity_type;
@@ -413,7 +413,7 @@ function wetkit_bean_block_view_alter(&$data, $block) {
  * Implements hook_form_FORM_ID_alter().
  */
 function wetkit_bean_form_bean_form_alter(&$form, $form_state) {
-  // provide a simpler form for ordering and editing slides.
+  // Provide a simpler form for ordering and editing slides.
   if ($form['#bundle'] == 'wetkit_slide') {
     $path = drupal_get_path('module', 'wetkit_bean');
     drupal_add_js($path . '/js/wetkit_bean.admin.js');
@@ -421,7 +421,7 @@ function wetkit_bean_form_bean_form_alter(&$form, $form_state) {
 
     $form['#submit'][] = 'wetkit_bean_form_bean_form_submit';
   }
-  // provide a simpler form for ordering and editing videos.
+  // Provide a simpler form for ordering and editing media.
   if ($form['#bundle'] == 'wetkit_media') {
     $path = drupal_get_path('module', 'wetkit_bean');
     drupal_add_js($path . '/js/wetkit_bean.admin.js');

@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- *   A bean media plugin.
+ * A bean media plugin.
  */
 
 class WetKitMediaBean extends BeanPlugin {

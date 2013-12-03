@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- *   A bean slideshow plugin.
+ * A bean slideshow plugin.
  */
 
 class WetKitSlideBean extends BeanPlugin {

@@ -7,22 +7,22 @@
 interface WetKitBeanSlidePluginInterface {
 
   /**
-   *
+   * Attachments for Slide.
    */
   public function attachments();
 
   /**
-   *
+   * The Form Settings to be applied.
    */
   public function form($settings);
 
   /**
-   *
+   * The values for the slide.
    */
   public function values();
 
   /**
-   *
+   * The submit handler.
    */
   public function submit(&$settings);
 }

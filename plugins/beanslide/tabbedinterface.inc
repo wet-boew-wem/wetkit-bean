@@ -75,6 +75,9 @@ class WetKitBeanSlideTabbedInterfacePlugin implements WetKitBeanSlidePluginInter
     );
   }
 
+  /**
+   * Implements WetKitBeanSlidePluginInterface::submit().
+   */
   public function submit(&$settings) {
 
   }

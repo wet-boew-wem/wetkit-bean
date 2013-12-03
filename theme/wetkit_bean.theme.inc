@@ -44,7 +44,7 @@ function theme_wetkit_slide_collection($variables) {
     $titles[] = $item['field_slide_headline']['#items'][0]['safe_value'];
   }
 
-  drupal_alter('wetkit_slide_slideshow', $items, $slides, $bean);
+  drupal_alter('wetkit_slide_slideshow', $items, $images, $bean);
   foreach ($items as $key => $data) {
     $items[$key] = drupal_render($data);
   }
@@ -80,9 +80,11 @@ function theme_wetkit_slide_collection($variables) {
     $output = '<div id="' . $id . '" class="bean-slide clearfix">' . $output . '</div>';
   }
 
-  drupal_add_js(array('wetkitbean' => array(
-    'slideshows' => array($data),
-  )), 'setting');
+  drupal_add_js(array(
+    'wetkitbean' => array(
+      'slideshows' => array($data),
+    ),
+  ), 'setting');
 
   return $output;
 }

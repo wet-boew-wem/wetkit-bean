@@ -78,8 +78,8 @@ class WetKitTwitterBean extends BeanPlugin {
       '#maxlength' => 25,
       '#default_value' => isset($bean->twitter_settings['username']) ? $bean->twitter_settings['username'] : '',
       '#states' => array(
-         'visible' => array(
-         ':input[name="twitter_settings[widget_type]"]' => array('value' => 'profile'),
+        'visible' => array(
+          ':input[name="twitter_settings[widget_type]"]' => array('value' => 'profile'),
         ),
       ),
     );
@@ -90,8 +90,8 @@ class WetKitTwitterBean extends BeanPlugin {
       '#maxlength' => 25,
       '#default_value' => isset($bean->twitter_settings['search_query']) ? $bean->twitter_settings['search_query'] : '',
       '#states' => array(
-         'visible' => array(
-         ':input[name="twitter_settings[widget_type]"]' => array('value' => 'search'),
+        'visible' => array(
+          ':input[name="twitter_settings[widget_type]"]' => array('value' => 'search'),
         ),
       ),
     );
@@ -106,11 +106,11 @@ class WetKitTwitterBean extends BeanPlugin {
     );
 
     $form['twitter_settings']['tweet_limit'] = array(
-        '#type' => 'select',
-        '#title' => t('Tweet limit'),
-        '#default_value' => isset($bean->twitter_settings['tweet_limit']) ? $bean->twitter_settings['tweet_limit'] : '',
-        '#options' => array('' => drupal_map_assoc(range(1, 20))),
-        '#description' => t('Fix the size of a timeline to a preset number of Tweets between 1 and 20. The timeline will render the specified number of Tweets from the timeline, expanding the height of the widget to display all Tweets without scrolling.'),
+      '#type' => 'select',
+      '#title' => t('Tweet limit'),
+      '#default_value' => isset($bean->twitter_settings['tweet_limit']) ? $bean->twitter_settings['tweet_limit'] : '',
+      '#options' => array('' => drupal_map_assoc(range(1, 20))),
+      '#description' => t('Fix the size of a timeline to a preset number of Tweets between 1 and 20. The timeline will render the specified number of Tweets from the timeline, expanding the height of the widget to display all Tweets without scrolling.'),
     );
 
     return $form;
@@ -131,7 +131,7 @@ class WetKitTwitterBean extends BeanPlugin {
     $tweet_limit = isset($bean->twitter_settings['tweet_limit']) ? 'data-tweet-limit="' . $bean->twitter_settings['tweet_limit'] . '"' : '';
 
     $url = "https://twitter.com/";
-    switch ($widget_type){
+    switch ($widget_type) {
       case 'profile':
         $url .= $username;
       case 'search':
@@ -147,7 +147,7 @@ class WetKitTwitterBean extends BeanPlugin {
     $markup = '<div class="wet-boew-webwidget ' . $span . '"><div class="widget-container">
                 <section>
                   <h3 class="background-accent">' . $title . '</h3>
-                  <article><a class="twitter-timeline" href="'. $url . '" data-widget-id="' . $widget_id . '"' . $tweet_limit . '>Tweets</a></article>
+                  <article><a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '"' . $tweet_limit . '>Tweets</a></article>
                 </section>
               </div></div>';
     $content['share_twitter']['#markup'] = $markup;
