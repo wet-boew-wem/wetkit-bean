@@ -7,6 +7,8 @@
 include_once 'wetkit_bean.default_content.inc';
 include_once 'wetkit_bean.features.inc';
 
+module_load_include('inc', 'wetkit_bean', 'wetkit_bean.field');
+
 /**
  * Implements hook_bean_types_api_info().
  */
@@ -21,6 +23,16 @@ function wetkit_bean_bean_types() {
   $plugins = array();
   $plugin_path = drupal_get_path('module', 'wetkit_bean') . '/plugins/bean';
 
+  $plugins['wetkit_bean'] = array(
+    'label' => t('Bean'),
+    'description' => t('The default implementation of Bean.'),
+    'handler' => array(
+      'class' => 'WetKitBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.bean.inc',
+    ),
+  );
   $plugins['wetkit_highlight'] = array(
     'label' => t('Highlight'),
     'description' => t('A highlighted bean for displaying important blocks.'),
@@ -233,159 +245,6 @@ function field_collection_contextual_links_view_alter(&$element, &$items) {
       }
     }
   }
-}
-
-/**
- * Implements hook_field_formatter_info().
- */
-function wetkit_bean_field_formatter_info() {
-  return array(
-    'wetkit_slide_collection' => array(
-      'label' => t('Slideshow'),
-      'field types' => array('field_collection'),
-    ),
-    'wetkit_media_collection' => array(
-      'label' => t('Media'),
-      'field types' => array('field_collection'),
-    ),
-  );
-}
-
-/**
- * Implements hook_field_formatter_view().
- */
-function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $element = array();
-  switch ($display['type']) {
-
-    // Slideshow.
-    case 'wetkit_slide_collection':
-
-      // Determine if the entity is a Bean Slide.
-      $is_bean_slide = FALSE;
-      if ($entity_type === 'bean' && ($info = $entity->getInfo())) {
-        $is_bean_slide = $info['name'] === 'wetkit_slide';
-      }
-
-      $list_items = array();
-      foreach ($items as $delta => $item) {
-        if ($field_collection = field_collection_field_get_entity($item)) {
-          // Useful data for those interested in altering.
-          $list_item = array();
-          $list_item['entity'] = $field_collection->view();
-          $list_item['#entity_type'] = $entity_type;
-          $list_item['#field'] = &$field;
-          $list_item['#instance'] = &$instance;
-          $list_item['#display'] = &$display;
-          $list_item['#field_collection_item'] = $field_collection;
-          $list_item['#theme_wrappers'] = array('field_collection_view');
-          $list_item['#attributes']['class'][] = 'field-collection-view';
-
-          // Add admin links for each item as contextual links.
-          $list_item['contextual_links'] = array(
-            '#type' => 'contextual_links',
-            '#contextual_links' => array(
-              'field_collection' => array(field_collection_field_get_path($field_collection->fieldInfo()), array($field_collection->item_id)),
-            ),
-            '#element' => $list_item,
-          );
-
-          if ($is_bean_slide) {
-            // There's always one entry in field_collection_item, but its key varies.
-            $key = array_keys($list_item['entity']['field_collection_item']);
-            $key = array_pop($key);
-
-            // Set (okay, monkey-patch) the image style for each slide image.
-            $image_style = &$list_item['entity']['field_collection_item'][$key]['field_slide_image'][0]['#image_style'];
-            if ($entity->data['image_style'] == '<none>') {
-              $image_style = NULL;
-            }
-            else {
-              $image_style = $entity->data['image_style'];
-            }
-          }
-
-          $list_item['#attributes']['class'][] = 'contextual-links-region';
-          $list_items[] = array(
-            'data' => $list_item,
-            'class' => array('item-' . $delta),
-          );
-        }
-      }
-
-      $element = array(
-        '#theme' => 'wetkit_slide_collection',
-        '#bean' => $entity,
-        '#items' => $list_items,
-        '#use_pager' => TRUE,
-      );
-      break;
-
-    // Media.
-    case 'wetkit_media_collection':
-
-      // Determine if the entity is a Bean Slide.
-      $is_bean_media = FALSE;
-      if ($entity_type === 'bean' && ($info = $entity->getInfo())) {
-        $is_bean_media = $info['name'] === 'wetkit_media';
-      }
-
-      $list_items = array();
-      foreach ($items as $delta => $item) {
-        if ($field_collection = field_collection_field_get_entity($item)) {
-          // Useful data for those interested in altering.
-          $list_item = array();
-          $list_item['entity'] = $field_collection->view();
-          $list_item['#entity_type'] = $entity_type;
-          $list_item['#field'] = &$field;
-          $list_item['#instance'] = &$instance;
-          $list_item['#display'] = &$display;
-          $list_item['#field_collection_item'] = $field_collection;
-          $list_item['#theme_wrappers'] = array('field_collection_view');
-          $list_item['#attributes']['class'][] = 'field-collection-view';
-
-          // Add admin links for each item as contextual links.
-          $list_item['contextual_links'] = array(
-            '#type' => 'contextual_links',
-            '#contextual_links' => array(
-              'field_collection' => array(field_collection_field_get_path($field_collection->fieldInfo()), array($field_collection->item_id)),
-            ),
-            '#element' => $list_item,
-          );
-
-          if ($is_bean_media) {
-            // There's always one entry in field_collection_item, but its key varies.
-            $key = array_keys($list_item['entity']['field_collection_item']);
-            $key = array_pop($key);
-
-            // Set (okay, monkey-patch) the image style for each slide image.
-            $image_style = &$list_item['entity']['field_collection_item'][$key]['field_media_poster'][0]['#image_style'];
-            if ($entity->data['image_style'] == '<none>') {
-              $image_style = NULL;
-            }
-            else {
-              $image_style = $entity->data['image_style'];
-            }
-          }
-
-          $list_item['#attributes']['class'][] = 'contextual-links-region';
-          $list_items[] = array(
-            'data' => $list_item,
-            'class' => array('item-' . $delta),
-          );
-        }
-      }
-
-      $element = array(
-        '#theme' => 'wetkit_media_collection',
-        '#bean' => $entity,
-        '#items' => $list_items,
-        '#use_pager' => TRUE,
-      );
-      break;
-  }
-
-  return $element;
 }
 
 /**

@@ -45,7 +45,7 @@ function wetkit_bean_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => -4,
+      'weight' => 2,
     ),
   );
 
@@ -58,13 +58,13 @@ function wetkit_bean_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'wetkit_bean',
         'settings' => array(
-          'title_class' => '',
-          'title_link' => '',
-          'title_style' => 'h2',
+          'wetkit_bean_class' => '',
+          'wetkit_bean_link' => '',
+          'wetkit_bean_style' => 'h2',
         ),
-        'type' => 'title_linked',
+        'type' => 'wetkit_bean_linked',
         'weight' => 0,
       ),
     ),
@@ -87,7 +87,7 @@ function wetkit_bean_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 1,
     ),
   );
 
@@ -320,6 +320,80 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'bean-wetkit_media-field_bean_media_collection'
+  $field_instances['bean-wetkit_media-field_bean_media_collection'] = array(
+    'bundle' => 'wetkit_media',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'wetkit_bean',
+        'settings' => array(),
+        'type' => 'wetkit_media_collection',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'field_bean_media_collection',
+    'label' => 'Media',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'bean-wetkit_media-title_field'
+  $field_instances['bean-wetkit_media-title_field'] = array(
+    'bundle' => 'wetkit_media',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The Title of the block.',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h2',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'bean-wetkit_search-field_bean_search_path'
   $field_instances['bean-wetkit_search-field_bean_search_path'] = array(
     'bundle' => 'wetkit_search',
@@ -524,76 +598,167 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_media-field_bean_media_collection'
-  $field_instances['bean-wetkit_media-field_bean_media_collection'] = array(
-    'bundle' => 'wetkit_media',
-    'default_value' => NULL,
+  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_caption'
+  $field_instances['field_collection_item-field_bean_media_collection-field_media_caption'] = array(
+    'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
-        'module' => 'wetkit_bean',
+        'label' => 'above',
+        'module' => 'file',
         'settings' => array(),
-        'type' => 'wetkit_media_collection',
+        'type' => 'file_default',
         'weight' => 1,
       ),
     ),
-    'entity_type' => 'bean',
-    'field_name' => 'field_bean_media_collection',
-    'label' => 'Media',
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_media_caption',
+    'label' => 'Caption',
     'required' => 0,
     'settings' => array(
+      'description_field' => 0,
       'entity_translation_sync' => FALSE,
+      'file_directory' => 'bean/media/caption',
+      'file_extensions' => 'htm html ttml txt',
+      'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
-      'module' => 'field_collection',
-      'settings' => array(),
-      'type' => 'field_collection_embed',
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          0 => 0,
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+          'wetkit_media' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'upload' => 'upload',
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'media_generic',
       'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_media-title_field'
-  $field_instances['bean-wetkit_media-title_field'] = array(
-    'bundle' => 'wetkit_media',
-    'default_value' => NULL,
+  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_file'
+  $field_instances['field_collection_item-field_bean_media_collection-field_media_file'] = array(
+    'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
-    'description' => 'The Title of the block.',
+    'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
-        'module' => 'title',
-        'settings' => array(
-          'title_class' => '',
-          'title_link' => '',
-          'title_style' => 'h2',
-        ),
-        'type' => 'title_linked',
-        'weight' => 0,
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 2,
       ),
     ),
-    'entity_type' => 'bean',
-    'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => FALSE,
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_media_file',
+    'label' => 'Media',
+    'required' => 0,
     'settings' => array(
+      'description_field' => 0,
       'entity_translation_sync' => FALSE,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
+      'file_directory' => 'bean/media/file',
+      'file_extensions' => 'mp4 webm mp3 ttml',
+      'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'module' => 'text',
+      'active' => 1,
+      'module' => 'media',
       'settings' => array(
-        'size' => 60,
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          0 => 0,
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+          'wetkit_media' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'upload' => 'upload',
+        ),
+        'progress_indicator' => 'throbber',
       ),
-      'type' => 'text_textfield',
+      'type' => 'media_generic',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_poster'
+  $field_instances['field_collection_item-field_bean_media_collection-field_media_poster'] = array(
+    'bundle' => 'field_bean_media_collection',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_media_poster',
+    'label' => 'Poster',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'bean/media/poster',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+          'wetkit_media' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'upload' => 'upload',
+        ),
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'media_generic',
       'weight' => 1,
     ),
   );
@@ -817,171 +982,6 @@ function wetkit_bean_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_caption'
-  $field_instances['field_collection_item-field_bean_media_collection-field_media_caption'] = array(
-    'bundle' => 'field_bean_media_collection',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_media_caption',
-    'label' => 'Caption',
-    'required' => 0,
-    'settings' => array(
-      'description_field' => 0,
-      'entity_translation_sync' => FALSE,
-      'file_directory' => 'bean/media/caption',
-      'file_extensions' => 'htm html ttml txt',
-      'max_filesize' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-        ),
-        'allowed_types' => array(
-          0 => 0,
-          'audio' => 0,
-          'document' => 0,
-          'image' => 'image',
-          'video' => 0,
-          'wetkit_media' => 0,
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
-          'upload' => 'upload',
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_file'
-  $field_instances['field_collection_item-field_bean_media_collection-field_media_file'] = array(
-    'bundle' => 'field_bean_media_collection',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_media_file',
-    'label' => 'Media',
-    'required' => 0,
-    'settings' => array(
-      'description_field' => 0,
-      'entity_translation_sync' => FALSE,
-      'file_directory' => 'bean/media/file',
-      'file_extensions' => 'mp4 webm mp3 ttml',
-      'max_filesize' => '',
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-        ),
-        'allowed_types' => array(
-          0 => 0,
-          'audio' => 0,
-          'document' => 0,
-          'image' => 'image',
-          'video' => 0,
-          'wetkit_media' => 0,
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
-          'upload' => 'upload',
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_poster'
-  $field_instances['field_collection_item-field_bean_media_collection-field_media_poster'] = array(
-    'bundle' => 'field_bean_media_collection',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_media_poster',
-    'label' => 'Poster',
-    'required' => 0,
-    'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
-      'entity_translation_sync' => FALSE,
-      'file_directory' => 'bean/media/poster',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
-      'title_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'media',
-      'settings' => array(
-        'allowed_schemes' => array(
-          'public' => 'public',
-        ),
-        'allowed_types' => array(
-          'audio' => 0,
-          'document' => 0,
-          'image' => 'image',
-          'video' => 0,
-          'wetkit_media' => 0,
-        ),
-        'browser_plugins' => array(
-          'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
-          'upload' => 'upload',
-        ),
-        'progress_indicator' => 'throbber',
-      ),
-      'type' => 'media_generic',
-      'weight' => 1,
     ),
   );
 
