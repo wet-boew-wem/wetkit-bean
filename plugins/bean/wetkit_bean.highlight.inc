@@ -10,8 +10,8 @@ class WetKitHighlightBean extends BeanPlugin {
    */
   public function values() {
     $values = array(
-      'image_settings' => array(
-        'image_style' => 'medium',
+      'wetkit_bean_title_settings' => array(
+        'classes' => '',
       ),
     );
 
@@ -23,19 +23,22 @@ class WetKitHighlightBean extends BeanPlugin {
   public function form($bean, $form, &$form_state) {
     $form = array();
 
-    $form['image_settings'] = array(
+    $form['wetkit_bean_title_settings'] = array(
       '#type' => 'fieldset',
-      '#title' => t('Configure Image Style'),
+      '#title' => t('Configure Title Field'),
       '#tree' => TRUE,
-      '#weight' => 0,
+      '#weight' => 1,
       '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
+      '#collapsed' => TRUE,
     );
-    $form['image_settings']['image_style'] = array(
-      '#type' => 'select',
-      '#title' => t('Image style'),
-      '#options' => array('<none>' => t('None')) + drupal_map_assoc(array_keys(image_styles())),
-      '#default_value' => isset($bean->image_settings['image_style']) ? $bean->image_settings['image_style'] : '',
+    $form['wetkit_bean_title_settings']['classes'] = array(
+      '#description' => t('CSS classes to be added to the title field.'),
+      '#type' => 'textfield',
+      '#title' => t('CSS'),
+      '#default_value' => isset($bean->wetkit_bean_title_settings['classes']) ? $bean->wetkit_bean_title_settings['classes'] : '',
+      '#size' => 60,
+      '#maxlength' => 128,
+      '#required' => FALSE,
     );
 
     return $form;

@@ -129,8 +129,8 @@ function wetkit_bean_field_formatter_view($entity_type, $entity, $field, $instan
           ),
         );
 
-        if (isset($entity->wetkit_bean_settings['classes'])) {
-          $settings['wetkit_bean_class'] = $entity->wetkit_bean_settings['classes'];
+        if (isset($entity->wetkit_bean_title_settings['classes'])) {
+          $settings['wetkit_bean_class'] = $entity->wetkit_bean_title_settings['classes'];
         }
 
         if (!empty($settings['wetkit_bean_class'])) {
