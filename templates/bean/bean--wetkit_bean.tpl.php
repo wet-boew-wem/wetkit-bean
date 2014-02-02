@@ -29,6 +29,9 @@
 ?>
 <section>
   <?php
+    if (empty($title)) {
+      unset($content['title_field']);
+    }
     print render($content);
   ?>
 </section>
