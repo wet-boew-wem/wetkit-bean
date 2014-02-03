@@ -83,6 +83,16 @@ function wetkit_bean_bean_types() {
       'file' => 'wetkit_bean.slide.inc',
     ),
   );
+  $plugins['wetkit_slideout'] = array(
+    'label' => t('Slide-Out Tab'),
+    'description' => t('A Slide-Out Tab for providing optional content.'),
+    'handler' => array(
+      'class' => 'WetKitSlideOutBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.slideout.inc',
+    ),
+  );
   $plugins['wetkit_rate'] = array(
     'label' => t('Rate'),
     'description' => t('A custom rate bean for displaying a fivestar widget.'),
@@ -151,6 +161,14 @@ function wetkit_bean_theme() {
       'bean' => NULL,
       'items' => NULL,
       'use_pager' => TRUE,
+    ),
+  );
+  $items['wetkit_slideout'] = array(
+    'file' => 'theme/wetkit_bean.theme.inc',
+    'variables' => array(
+      'show_title' => '',
+      'hide_title' => '',
+      'contents' => array(),
     ),
   );
 

@@ -264,3 +264,23 @@ function theme_wetkit_media_collection($variables) {
 
   return $output;
 }
+
+/**
+ * Themes a slideout tab.
+ */
+function theme_wetkit_slideout(&$variables) {
+  $show_title = $variables['show_title'];
+  $hide_title = $variables['hide_title'];
+  $contents = $variables['contents'];
+  $output = '<div class="wet-boew-slideout" data-wet-boew=';
+
+  if (empty($hide_title)) {
+    $hide_title = $show_title;
+  }
+  $output .= "'{\"txtShow\": \"$show_title\", \"txtHide\": \"$hide_title\"}'>";
+
+  $output .= drupal_render_children($contents);
+
+  $output .= '</div>';
+  return $output;
+}
