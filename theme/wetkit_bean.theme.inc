@@ -46,7 +46,7 @@ function theme_wetkit_slide_collection($variables) {
 
   drupal_alter('wetkit_slide_slideshow', $items, $images, $bean);
   foreach ($items as $key => $data) {
-    $items[$key] = drupal_render($data);
+    $items[$key] = drupal_render($data['data']);
   }
 
   // Add unique id.
