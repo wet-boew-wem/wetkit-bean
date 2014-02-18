@@ -186,15 +186,6 @@ function wetkit_bean_page_build() {
 }
 
 /**
- * Alter default file types.
- *
- * @see hook_file_default_types()
- */
-function wetkit_bean_file_default_types_alter(&$types) {
-  $types['document']->mimetypes[] = 'text/html';
-}
-
-/**
  * Implements hook_preprocess_image_style().
  */
 function wetkit_bean_preprocess_image_style(&$variables) {
