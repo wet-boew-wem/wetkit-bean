@@ -186,6 +186,52 @@ function wetkit_bean_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_bean__wetkit_rate';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'label' => array(
+          'weight' => '-10',
+        ),
+        'revision' => array(
+          'weight' => '10',
+        ),
+        'view_mode' => array(
+          'weight' => '10',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_bean__wetkit_rate'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_bean__wetkit_share';
+  $strongarm->value = array(
+    'view_modes' => array(),
+    'extra_fields' => array(
+      'form' => array(
+        'label' => array(
+          'weight' => '-10',
+        ),
+        'revision' => array(
+          'weight' => '10',
+        ),
+        'view_mode' => array(
+          'weight' => '10',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_bean__wetkit_share'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_bean__wetkit_slide';
   $strongarm->value = array(
     'view_modes' => array(
@@ -215,6 +261,39 @@ function wetkit_bean_strongarm() {
     ),
   );
   $export['field_bundle_settings_bean__wetkit_slide'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'field_bundle_settings_bean__wetkit_twitter';
+  $strongarm->value = array(
+    'view_modes' => array(
+      'default' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(
+        'label' => array(
+          'weight' => '-10',
+        ),
+        'revision' => array(
+          'weight' => '10',
+        ),
+        'view_mode' => array(
+          'weight' => '10',
+        ),
+      ),
+      'display' => array(),
+    ),
+  );
+  $export['field_bundle_settings_bean__wetkit_twitter'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

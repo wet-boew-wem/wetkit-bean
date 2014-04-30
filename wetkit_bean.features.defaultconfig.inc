@@ -25,6 +25,7 @@ function wetkit_bean_defaultconfig_user_default_permissions() {
   $permissions['view any wetkit_bean bean'] = array(
     'name' => 'view any wetkit_bean bean',
     'roles' => array(
+      'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
     ),

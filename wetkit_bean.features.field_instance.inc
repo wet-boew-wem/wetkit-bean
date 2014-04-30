@@ -394,6 +394,44 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'bean-wetkit_rate-title_field'
+  $field_instances['bean-wetkit_rate-title_field'] = array(
+    'bundle' => 'wetkit_rate',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The Title of the block.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -9,
+    ),
+  );
+
   // Exported field_instance: 'bean-wetkit_search-field_bean_search_path'
   $field_instances['bean-wetkit_search-field_bean_search_path'] = array(
     'bundle' => 'wetkit_search',
@@ -507,6 +545,44 @@ function wetkit_bean_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_select',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'bean-wetkit_share-title_field'
+  $field_instances['bean-wetkit_share-title_field'] = array(
+    'bundle' => 'wetkit_share',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The Title of the block.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -9,
     ),
   );
 
@@ -717,6 +793,43 @@ function wetkit_bean_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'bean-wetkit_twitter-title_field'
+  $field_instances['bean-wetkit_twitter-title_field'] = array(
+    'bundle' => 'wetkit_twitter',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The Title of the block.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -9,
     ),
   );
 

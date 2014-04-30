@@ -147,7 +147,7 @@ class WetKitTwitterBean extends BeanPlugin {
     $markup = '<div class="wet-boew-webwidget ' . $span . '"><div class="widget-container">
                 <section>
                   <h3 class="background-accent">' . $title . '</h3>
-                  <article><a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '"' . $tweet_limit . '>Tweets</a></article>
+                  <article><a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '" ' . $tweet_limit . '>Tweets</a></article>
                 </section>
               </div></div>';
     $content['share_twitter']['#markup'] = $markup;
