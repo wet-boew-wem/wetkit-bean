@@ -12,7 +12,7 @@ class WetKitMediaBean extends BeanPlugin {
   public function values() {
     return array(
       'image_style' => 'highlight',
-      'media_span' => 'span-3',
+      'media_span' => 'col-md-3',
     );
   }
 
@@ -34,13 +34,13 @@ class WetKitMediaBean extends BeanPlugin {
       '#type' => 'select',
       '#title' => t('Media span'),
       '#options' => array(
-        'span-2' => t('Span 2'),
-        'span-3' => t('Span 3'),
-        'span-4' => t('Span 4'),
-        'span-5' => t('Span 5'),
-        'span-6' => t('Span 6'),
-        'span-7' => t('Span 7'),
-        'span-8' => t('Span 8'),
+        'col-md-2' => t('Span 2'),
+        'col-md-3' => t('Span 3'),
+        'col-md-4' => t('Span 4'),
+        'col-md-5' => t('Span 5'),
+        'col-md-6' => t('Span 6'),
+        'col-md-7' => t('Span 7'),
+        'col-md-8' => t('Span 8'),
       ),
       '#default_value' => isset($bean->media_span) ? $bean->media_span : '',
       '#weight' => 2,

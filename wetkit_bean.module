@@ -168,7 +168,10 @@ function wetkit_bean_theme() {
     'variables' => array(
       'show_title' => '',
       'hide_title' => '',
+      'icon' => '',
       'contents' => array(),
+      'slideout_render' => '',
+      'slideout_form' => '',
     ),
   );
 
@@ -183,6 +186,8 @@ function wetkit_bean_page_build() {
     'group' => CSS_THEME,
     'every_page' => TRUE,
   ));
+
+  drupal_add_js(drupal_get_path('module', 'wetkit_bean') . '/js/wetkit_bean.js');
 }
 
 /**

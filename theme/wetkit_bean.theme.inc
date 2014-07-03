@@ -70,9 +70,10 @@ function theme_wetkit_slide_collection($variables) {
 
     $css_classes = implode(" ", array_values($effects));
     $title = t('Tab List');
-    $header = theme('wetkit_slide_header', array('items' => $titles, 'title' => $title, 'type' => 'ul', 'attributes' => array('class' => array('tabs'))));
+    $header = theme('wetkit_slide_header', array('items' => $titles, 'title' => $title, 'type' => 'ul', 'attributes' => array('role' => array('tablist'))));
     $output = theme('wetkit_slide_tab_panels', array('items' => $items, 'title' => $title, 'type' => 'div', 'attributes' => array('class' => array('tabs-panel'))));
-    $output = '<div class="wet-boew-tabbedinterface ' . $css_classes . '">' . $header . $output . '</div>';
+    $css_classes = '';
+    $output = '<div class="wb-tabs carousel-s2 ' . $css_classes . '" data-speed="slow">' . $header . $output . '</div>';
   }
   // Support FlexSlider and jQuery.Cycle.
   else {
@@ -132,7 +133,7 @@ function theme_wetkit_slide_tab_panels($variables) {
 
   $output = '';
   if (!empty($items)) {
-    $output .= "<$type" . drupal_attributes($attributes) . '>';
+    //$output .= "<$type" . drupal_attributes($attributes) . '>';
     $num_items = count($items);
     $i = 0;
     foreach ($items as $item) {
@@ -154,15 +155,19 @@ function theme_wetkit_slide_tab_panels($variables) {
         }
       }
       else {
-        $data = '<section>' . $item . '</section>';
+        $data = '<figure>' . $item . '</figure>';
       }
 
       $attributes['id'][] = "tabs$i";
-      $attributes['class'][] = "tabs-content-pad";
+      $attributes['class'][] = "fade";
+      $attributes['role'][] = "tabpanel";
 
       if ($i == 1) {
-        $attributes['class'][] = 'first';
+        $attributes['class'][] = 'in';
+      } else {
+        $attributes['class'][] = 'out';
       }
+
       if ($i == $num_items) {
         $attributes['class'][] = 'last';
       }
@@ -170,8 +175,9 @@ function theme_wetkit_slide_tab_panels($variables) {
       $output .= '<div' . drupal_attributes($attributes) . '>' . $data . "</div>\n";
 
     }
-    $output .= "</$type>";
+    //$output .= "</$type>";
   }
+
   return $output;
 }
 
@@ -234,7 +240,7 @@ function theme_wetkit_media_collection($variables) {
   if ($type_of_media == 'video') {
     $media_attributes['poster'] = $poster;
   }
-  $wrapper_attributes['class'] = 'wet-boew-multimedia ' . $bean->media_span;
+  $wrapper_attributes['class'] = 'wb-mltmd ' . $bean->media_span;
 
   // Collect the caption.
   foreach ($items as $item_key => $data) {
@@ -272,15 +278,24 @@ function theme_wetkit_slideout(&$variables) {
   $show_title = $variables['show_title'];
   $hide_title = $variables['hide_title'];
   $contents = $variables['contents'];
-  $output = '<div class="wet-boew-slideout" data-wet-boew=';
+  $icon = $variables['icon'];
+  $render = $variables['slideout_render'];
+  $form_name = $variables['slideout_form'];
 
-  if (empty($hide_title)) {
-    $hide_title = $show_title;
+  if ($render == 'form') {
+    $form = drupal_get_form($form_name);
+    unset($form['wetkit_wetboew']['wetkit_wetboew_theme']['#description']);
+    unset($form['wetkit_wetboew']['wetkit_wetboew_minified']['#description']);
+    $body = drupal_render($form);
   }
-  $output .= "'{\"txtShow\": \"$show_title\", \"txtHide\": \"$hide_title\"}'>";
+  else {
+    $body = drupal_render_children($contents);
+  }
 
-  $output .= drupal_render_children($contents);
-
+  $output = '<div id="slide-panel" class="hidden-md hidden-sm hidden-xs">';
+  $output .= '<a href="#" class="btn btn-primary" id="opener">' . theme('icon', $icon) . '</a>';
+  $output .= $body;
   $output .= '</div>';
+
   return $output;
 }
