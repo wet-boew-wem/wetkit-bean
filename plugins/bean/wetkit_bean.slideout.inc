@@ -29,13 +29,13 @@ class WetKitSlideOutBean extends BeanPlugin {
       '#type' => 'fieldset',
       '#title' => t('Configure Slide Out Widget'),
       '#tree' => TRUE,
-      '#weight' => -8,
+      '#weight' => 1,
       '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
+      '#collapsed' => TRUE,
     );
     $form['slideout_settings']['configure_slideout_widget'] = array(
       '#type' => 'select',
-      '#title' => t('Configure Source'),
+      '#title' => t('Configure Widget'),
       '#options' => array(
         'form' => t('Form'),
         'textarea' => t('HTML'),

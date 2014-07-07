@@ -736,7 +736,7 @@ function wetkit_bean_field_default_field_instances() {
       'module' => 'icon_field',
       'settings' => array(),
       'type' => 'icon_field',
-      'weight' => 1,
+      'weight' => 2,
     ),
   );
 
@@ -776,45 +776,6 @@ function wetkit_bean_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 4,
-    ),
-  );
-
-  // Exported field_instance: 'bean-wetkit_slideout-field_slideout_hide'
-  $field_instances['bean-wetkit_slideout-field_slideout_hide'] = array(
-    'bundle' => 'wetkit_slideout',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'field_name' => 'field_slideout_hide',
-    'label' => 'Hide Title',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
       'weight' => 3,
     ),
   );
@@ -835,7 +796,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
     'entity_type' => 'bean',
     'field_name' => 'title_field',
-    'label' => 'Show Title',
+    'label' => 'Title',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -858,7 +819,7 @@ function wetkit_bean_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -1296,14 +1257,12 @@ function wetkit_bean_field_default_field_instances() {
   t('Body');
   t('Caption');
   t('Headline');
-  t('Hide Title');
   t('Icon');
   t('Link');
   t('Media');
   t('Please insert the description for this highlighted region.');
   t('Poster');
   t('Share Widget');
-  t('Show Title');
   t('Slide image');
   t('Slides');
   t('Taxonomy');
