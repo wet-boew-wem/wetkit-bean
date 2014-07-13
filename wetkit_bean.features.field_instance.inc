@@ -76,7 +76,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
@@ -152,7 +152,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 4,
@@ -773,7 +773,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 3,
@@ -1240,7 +1240,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 3,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
