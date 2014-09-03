@@ -98,7 +98,7 @@ class WetKitSearchBean extends BeanPlugin {
               <h2 class="' . $background . ' font-medium">' . $title . '</h2>
               <div class="module">
                 <p>
-                  <label class="wb-invisible" for="' . $unique_id . '">Search Data</label>
+                  <label class="wb-invisible" for="' . $unique_id . '">' . t('Search Data') . '</label>
                   <input type="search" id="' . $unique_id . '" class="search" name="q" size="30" value="" autocomplete="off" placeholder="" />
                   <button class="gcwu-srch-submit" type="submit" value="Search">' . t('Submit') . '</button>
                 </p>
