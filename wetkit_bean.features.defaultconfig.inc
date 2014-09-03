@@ -32,5 +32,27 @@ function wetkit_bean_defaultconfig_user_default_permissions() {
     'module' => 'bean',
   );
 
+  // Exported permission: 'view any wetkit_slide bean'.
+  $permissions['view any wetkit_slide bean'] = array(
+    'name' => 'view any wetkit_slide bean',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'bean',
+  );
+
+  // Exported permission: 'view any wetkit_slideout bean'.
+  $permissions['view any wetkit_slideout bean'] = array(
+    'name' => 'view any wetkit_slideout bean',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'bean',
+  );
+
   return $permissions;
 }

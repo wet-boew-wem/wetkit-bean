@@ -10,6 +10,40 @@
 function wetkit_bean_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'bean-wetkit_bean-field_bean_taxonomy'
+  $field_instances['bean-wetkit_bean-field_bean_taxonomy'] = array(
+    'bundle' => 'wetkit_bean',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'field_bean_taxonomy',
+    'label' => 'Taxonomy',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'bean-wetkit_bean-field_bean_wetkit_body'
   $field_instances['bean-wetkit_bean-field_bean_wetkit_body'] = array(
     'bundle' => 'wetkit_bean',
@@ -22,7 +56,7 @@ function wetkit_bean_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'bean',
@@ -42,7 +76,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
@@ -58,14 +92,9 @@ function wetkit_bean_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'wetkit_bean',
-        'settings' => array(
-          'wetkit_bean_class' => '',
-          'wetkit_bean_link' => '',
-          'wetkit_bean_style' => 'h2',
-        ),
-        'type' => 'wetkit_bean_linked',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'bean',
@@ -123,7 +152,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 4,
@@ -223,8 +252,9 @@ function wetkit_bean_field_default_field_instances() {
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
       'linkit' => array(
-        'enable' => 1,
-        'insert_plugin' => 'html_link',
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
       ),
       'rel_remove' => 'default',
       'title' => 'required',
@@ -674,6 +704,42 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'bean-wetkit_slideout-field_bean_icon'
+  $field_instances['bean-wetkit_slideout-field_bean_icon'] = array(
+    'bundle' => 'wetkit_slideout',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'icon_field',
+        'settings' => array(
+          'link_to_content' => FALSE,
+        ),
+        'type' => 'icon_field_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'bean',
+    'field_name' => 'field_bean_icon',
+    'label' => 'Icon',
+    'required' => 0,
+    'settings' => array(
+      'bundle' => NULL,
+      'entity_translation_sync' => FALSE,
+      'icon' => NULL,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'icon_field',
+      'settings' => array(),
+      'type' => 'icon_field',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'bean-wetkit_slideout-field_bean_wetkit_body'
   $field_instances['bean-wetkit_slideout-field_bean_wetkit_body'] = array(
     'bundle' => 'wetkit_slideout',
@@ -707,49 +773,10 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'bean-wetkit_slideout-field_slideout_hide'
-  $field_instances['bean-wetkit_slideout-field_slideout_hide'] = array(
-    'bundle' => 'wetkit_slideout',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'bean',
-    'field_name' => 'field_slideout_hide',
-    'label' => 'Hide Title',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 2,
     ),
   );
 
@@ -764,12 +791,12 @@ function wetkit_bean_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'bean',
     'field_name' => 'title_field',
-    'label' => 'Show Title',
+    'label' => 'Title',
     'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1011,7 +1038,7 @@ function wetkit_bean_field_default_field_instances() {
         'settings' => array(
           'title_class' => '',
           'title_link' => 'content',
-          'title_style' => 'h3',
+          'title_style' => 'strong',
         ),
         'type' => 'title_linked',
         'weight' => 1,
@@ -1213,7 +1240,7 @@ function wetkit_bean_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 3,
+        'rows' => 10,
       ),
       'type' => 'text_textarea',
       'weight' => 2,
@@ -1230,15 +1257,15 @@ function wetkit_bean_field_default_field_instances() {
   t('Body');
   t('Caption');
   t('Headline');
-  t('Hide Title');
+  t('Icon');
   t('Link');
   t('Media');
   t('Please insert the description for this highlighted region.');
   t('Poster');
   t('Share Widget');
-  t('Show Title');
   t('Slide image');
   t('Slides');
+  t('Taxonomy');
   t('Teaser');
   t('The Title of the block.');
   t('Title');

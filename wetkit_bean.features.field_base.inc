@@ -133,6 +133,26 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_bean_icon'
+  $field_bases['field_bean_icon'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_bean_icon',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'icon_field',
+    'settings' => array(
+      'bundle' => NULL,
+      'entity_translation_sync' => FALSE,
+      'icon' => NULL,
+    ),
+    'translatable' => 0,
+    'type' => 'icon_field',
+  );
+
   // Exported field_base: 'field_bean_media_collection'
   $field_bases['field_bean_media_collection'] = array(
     'active' => 1,
@@ -209,6 +229,42 @@ function wetkit_bean_field_default_field_bases() {
     ),
     'translatable' => 1,
     'type' => 'field_collection',
+  );
+
+  // Exported field_base: 'field_bean_taxonomy'
+  $field_bases['field_bean_taxonomy'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_bean_taxonomy',
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'wetkit_categories',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
   );
 
   // Exported field_base: 'field_media_caption'
@@ -433,36 +489,6 @@ function wetkit_bean_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text_long',
-  );
-
-  // Exported field_base: 'field_slideout_hide'
-  $field_bases['field_slideout_hide'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_slideout_hide',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max_length' => 255,
-    ),
-    'translatable' => 1,
-    'type' => 'text',
   );
 
   return $field_bases;

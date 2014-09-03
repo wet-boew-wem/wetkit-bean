@@ -89,22 +89,20 @@ function wetkit_bean_field_group_info() {
     'label' => 'Caption',
     'weight' => '1',
     'children' => array(
-      0 => 'field_slide_teaser',
-      1 => 'field_slide_headline',
-      2 => 'field_slide_link',
+      0 => 'field_slide_link',
+      1 => 'field_slide_teaser',
+      2 => 'field_slide_headline',
     ),
-    'format_type' => 'div',
+    'format_type' => 'html-element',
     'format_settings' => array(
       'label' => 'Caption',
       'instance_settings' => array(
-        'classes' => 'caption',
-        'description' => '',
-        'show_label' => '0',
-        'label_element' => 'h3',
-        'effect' => 'none',
-        'speed' => 'fast',
+        'classes' => '',
+        'element' => 'figcaption',
+        'attributes' => '',
+        'required_fields' => 1,
       ),
-      'formatter' => 'open',
+      'formatter' => '',
     ),
   );
   $export['group_bean_slide_caption|field_collection_item|field_bean_slide_collection|default'] = $field_group;
