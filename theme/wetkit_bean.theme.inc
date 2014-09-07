@@ -71,7 +71,7 @@ function theme_wetkit_slide_collection($variables) {
     $css_classes = implode(" ", array_values($effects));
     $title = t('Tab List');
     $header = theme('wetkit_slide_header', array('items' => $titles, 'title' => $title, 'type' => 'ul', 'attributes' => array('role' => array('tablist'))));
-    $output = theme('wetkit_slide_tab_panels', array('items' => $items, 'title' => $title, 'type' => 'div', 'attributes' => array('class' => array('tabs-panel'))));
+    $output = '<div class="tabpanels">' . theme('wetkit_slide_tab_panels', array('items' => $items, 'title' => $title, 'type' => 'div', 'attributes' => array('class' => array('tabs-panel')))) . '</div>';
     $css_classes = '';
     $output = '<div class="wb-tabs carousel-s2 ' . $css_classes . '" data-speed="slow">' . $header . $output . '</div>';
   }
