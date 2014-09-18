@@ -10,7 +10,7 @@ class WetKitHighlightBean extends BeanPlugin {
    */
   public function values() {
     $values = array(
-      'wetkit_bean_title_settings' => array(
+      'wetkit_bean_highlight_title_settings' => array(
         'classes' => '',
       ),
     );
@@ -23,7 +23,7 @@ class WetKitHighlightBean extends BeanPlugin {
   public function form($bean, $form, &$form_state) {
     $form = array();
 
-    $form['wetkit_bean_title_settings'] = array(
+    $form['wetkit_bean_highlight_title_settings'] = array(
       '#type' => 'fieldset',
       '#title' => t('Configure Title Field'),
       '#tree' => TRUE,
@@ -31,11 +31,11 @@ class WetKitHighlightBean extends BeanPlugin {
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
     );
-    $form['wetkit_bean_title_settings']['classes'] = array(
+    $form['wetkit_bean_highlight_title_settings']['classes'] = array(
       '#description' => t('CSS classes to be added to the title field.'),
       '#type' => 'textfield',
       '#title' => t('CSS'),
-      '#default_value' => isset($bean->wetkit_bean_title_settings['classes']) ? $bean->wetkit_bean_title_settings['classes'] : '',
+      '#default_value' => isset($bean->wetkit_bean_highlight_title_settings['classes']) ? $bean->wetkit_bean_highlight_title_settings['classes'] : '',
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => FALSE,
@@ -58,10 +58,11 @@ class WetKitHighlightBean extends BeanPlugin {
     // Content Fields.
     foreach ($content['bean'] as &$child) {
       if (isset($link_url)) {
-        $child['field_bean_highlight_image'][0]['file']['#prefix'] = '<a href="' . $link_url . '">';
-        $child['field_bean_highlight_image'][0]['file']['#suffix'] = '</a>';
+        $child['field_bean_highlight_image'][0]['#path']['path'] = $link_url;
       }
+      $child['field_bean_highlight_link']['#access'] = FALSE;
     }
+
     return $content;
   }
 }
