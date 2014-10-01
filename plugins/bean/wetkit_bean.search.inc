@@ -84,6 +84,11 @@ class WetKitSearchBean extends BeanPlugin {
     $search_path = field_view_value('bean', $bean, 'field_bean_search_path', $search_path[0], array());
     $search_path = render($search_path);
 
+    // Body Path.
+    $body = field_get_items('bean', $bean, 'field_bean_wetkit_body');
+    $body = field_view_value('bean', $bean, 'field_bean_wetkit_body', $body[0], array());
+    $body = render($body);
+
     // Background Styles.
     $background = isset($bean->title_settings['backgrounds']) ? $bean->title_settings['backgrounds'] : '';
 
@@ -94,16 +99,16 @@ class WetKitSearchBean extends BeanPlugin {
     $unique_id = 'gcwu-srch-delta-' . $bean->bid;
 
     $content = array();
-    $markup = '<form method="get" action="' . $search_path . '">
-              <h2 class="' . $background . ' font-medium">' . $title . '</h2>
-              <div class="module">
+    $markup = '<div id="wb-srch"><form class="form-inline" method="get" action="' . $search_path . '">
+              <div>' . $body . '</div>
+              <div class="form-item form-group">
                 <p>
                   <label class="wb-invisible" for="' . $unique_id . '">' . t('Search Data') . '</label>
-                  <input type="search" id="' . $unique_id . '" class="search" name="q" size="30" value="" autocomplete="off" placeholder="" />
-                  <button class="gcwu-srch-submit" type="submit" value="Search">' . t('Submit') . '</button>
+                  <input title="" class="form-control search" placeholder="" data-toggle="tooltip" type="search" id="' . $unique_id . '" name="q" value="" size="15" maxlength="128" autocomplete="off">
+                  <button class="btn btn-primary btn-small form-submit" data-icon="search" type="submit" value="search"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">' . t('Search') . '</span></button>
                 </p>
               </div>
-            </form>';
+            </form></div>';
     $content['search_bean_box']['#markup'] = $markup;
 
     return $content;

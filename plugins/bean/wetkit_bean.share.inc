@@ -79,18 +79,19 @@ class WetKitShareBean extends BeanPlugin {
     $source_tag = isset($bean->share_settings['source_tag']) && !empty($bean->share_settings['source_tag'])?  ', sourceTag: \'' . $bean->share_settings['source_tag'] . '\'' : '';
 
     // Sites.
-    $sites = '';
+    $sites = array();
     foreach ($bean->field_share_widget[LANGUAGE_NONE] as $service) {
-      $sites[] = '\'' . $service['value'] . '\'';
+      $sites[] = $service['value'];
     }
-    if (!empty($sites)) {
-      $sites = '[' . implode(",", $sites) . ']';
-    }
-    else {
-      $sites = '[]';
-    }
+
     $content = array();
-    $markup = '<div class="wet-boew-share ' . $span . ' ' . $custom_css . ' margin-bottom-none align-right" data-wet-boew="{sites: ' . $sites . $email . $source_tag . '}"></div>';
+    $arr = array(
+      'filter' => $sites,
+      'pnlId' => 'pnl1',
+      'lnkClass' => 'btn btn-default'
+    );
+    $arr = json_encode($arr);
+    $markup = '<div class="clearfix"><div class="wb-share ' . $span . ' ' . $custom_css . ' mrgn-bttm-sm pull-right" data-wb-share=\'' . $arr . '\'></div></div>';
     $content['share_bean']['#markup'] = $markup;
 
     return $content;
