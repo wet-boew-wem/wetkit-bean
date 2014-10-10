@@ -109,12 +109,13 @@ function theme_wetkit_slide_header($variables) {
       $i++;
       if ($i == 1) {
         $attributes['class'][] = 'first';
+        $attributes['class'][] = 'active';
       }
       if ($i == $num_items) {
         $attributes['class'][] = 'last';
       }
 
-      $output .= '<li><a href="#tabs' . $i . '">' . $item . "</a></li>\n";
+      $output .= '<li' . drupal_attributes($attributes) . '><a href="#tabs' . $i . '">' . $item . "</a></li>\n";
     }
 
     $output .= "</$type>";
