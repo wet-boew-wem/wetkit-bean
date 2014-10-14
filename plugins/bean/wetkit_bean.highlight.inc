@@ -68,12 +68,11 @@ class WetKitHighlightBean extends BeanPlugin {
 
     $content = array();
 
-    $markup = '<a href="' . $linkurl . '" class="sect-lnks thumbnail" rel="external" title="' . $linktitle . '">
-                <figure>'
-                  . $image .
-                  '<figcaption>' . $linktext . '</figcaption>' .
-                '</figure>
-              </a>';
+    $markup = '<section class="col-lg-4 col-md-6"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">'
+                . '<h3>' . $linktitle . '</h3>'
+                . $image .
+              '</a>' .
+              '<p>' . $linktext . '</p></section>';
     $content['highlight']['#markup'] = $markup;
 
     return $content;

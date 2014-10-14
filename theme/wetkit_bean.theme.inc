@@ -41,7 +41,7 @@ function theme_wetkit_slide_collection($variables) {
     $key = array_pop($key);
     $item = $data['data']['entity']['field_collection_item'][$key];
 
-    $titles[] = $item['field_slide_headline']['#items'][0]['safe_value'];
+    $titles[] = $item['field_slide_link']['#items'][0]['title'];
   }
 
   drupal_alter('wetkit_slide_slideshow', $items, $images, $bean);
