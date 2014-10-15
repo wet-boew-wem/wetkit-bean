@@ -91,7 +91,6 @@ function wetkit_bean_field_group_info() {
     'children' => array(
       0 => 'field_slide_link',
       1 => 'field_slide_teaser',
-      2 => 'field_slide_headline',
     ),
     'format_type' => 'html-element',
     'format_settings' => array(
