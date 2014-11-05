@@ -63,7 +63,7 @@ class WetKitSlideOutBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'full', $langcode = NULL) {
 
-    // Bean Form(s).
+    // Settings.
     $render = isset($bean->slideout_settings['configure_slideout_widget']) ? $bean->slideout_settings['configure_slideout_widget'] : 'textarea';
     $form_name = isset($bean->slideout_settings['configure_slideout_form']) ? $bean->slideout_settings['configure_slideout_form'] : '';
 
@@ -92,6 +92,7 @@ class WetKitSlideOutBean extends BeanPlugin {
       $icon = '';
     }
 
+    // Render form.
     $form = array(
       '#theme' => 'wetkit_slideout',
       '#show_title' => $showtext,

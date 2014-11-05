@@ -102,6 +102,7 @@ function theme_wetkit_slide_header($variables) {
   $output = '';
   if (!empty($items)) {
     $output .= "<$type" . drupal_attributes($attributes) . '>';
+    $attributes = array();
 
     $num_items = count($items);
     $i = 0;
@@ -293,7 +294,7 @@ function theme_wetkit_slideout(&$variables) {
     $body = drupal_render_children($contents);
   }
 
-  $output = '<div id="slide-panel" class="hidden-md hidden-sm hidden-xs">';
+  $output = '<div id="slide-panel" class="">';
   $output .= '<a href="#" class="btn btn-primary" id="opener">' . theme('icon', $icon) . '</a>';
   $output .= $body;
   $output .= '</div>';

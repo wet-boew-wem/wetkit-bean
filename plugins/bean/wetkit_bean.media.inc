@@ -53,7 +53,6 @@ class WetKitMediaBean extends BeanPlugin {
    * Implements BeanPlugin::view().
    */
   public function view($bean, $content, $view_mode = 'full', $langcode = NULL) {
-
     return $content;
   }
 
@@ -61,7 +60,6 @@ class WetKitMediaBean extends BeanPlugin {
    * Implements BeanPlugin::submit().
    */
   public function submit(Bean $bean) {
-
     return parent::submit($bean);
   }
 }

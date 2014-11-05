@@ -84,14 +84,22 @@ class WetKitShareBean extends BeanPlugin {
       $sites[] = $service['value'];
     }
 
+    // Reset content.
     $content = array();
+
+    // JSON params.
     $arr = array(
       'filter' => $sites,
       'pnlId' => 'pnl1',
       'lnkClass' => 'btn btn-default'
     );
     $arr = json_encode($arr);
-    $markup = '<div class="clearfix"><div class="wb-share ' . $span . ' ' . $custom_css . ' mrgn-bttm-sm pull-right" data-wb-share=\'' . $arr . '\'></div></div>';
+
+    // Rendered markup.
+    $markup = '<div class="clearfix">';
+    $markup .= '<div class="wb-share ' . $span . ' ' . $custom_css . ' mrgn-bttm-sm pull-right" data-wb-share=\'' . $arr . '\'></div>';
+    $markup .= '</div>';
+
     $content['share_bean']['#markup'] = $markup;
 
     return $content;

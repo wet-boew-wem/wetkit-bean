@@ -16,6 +16,7 @@ class WetKitSearchBean extends BeanPlugin {
       'search_placeholder' => array(
         'placeholder_text' => 'e.g. population',
       ),
+      'search_filter' => 'q',
     );
 
     return array_merge(parent::values(), $values);
@@ -66,6 +67,15 @@ class WetKitSearchBean extends BeanPlugin {
       '#required' => FALSE,
     );
 
+    $form['search_filter'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Enter the filter name name for search'),
+      '#default_value' => isset($bean->search_filter) ? $bean->search_filter : 'q',
+      '#size' => 60,
+      '#maxlength' => 128,
+      '#required' => FALSE,
+    );
+
     return $form;
   }
 
@@ -95,20 +105,24 @@ class WetKitSearchBean extends BeanPlugin {
     // Placeholder Value.
     $placeholder = isset($bean->search_placeholder['placeholder_text']) ? $bean->search_placeholder['placeholder_text'] : '';
 
+    // Filter Value.
+    $filter = isset($bean->search_filter) ? $bean->search_filter : 'q';
+
     // Unique ID for Accessibility.
     $unique_id = 'gcwu-srch-delta-' . $bean->bid;
 
+    // Reset content.
     $content = array();
-    $markup = '<div id="wb-srch"><form class="form-inline" method="get" action="' . $search_path . '">
-              <div>' . $body . '</div>
-              <div class="form-item form-group">
-                <p>
-                  <label class="wb-invisible" for="' . $unique_id . '">' . t('Search Data') . '</label>
-                  <input title="" class="form-control search" placeholder="" data-toggle="tooltip" type="search" id="' . $unique_id . '" name="q" value="" size="15" maxlength="128" autocomplete="off">
-                  <button class="btn btn-primary btn-small form-submit" data-icon="search" type="submit" value="search"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">' . t('Search') . '</span></button>
-                </p>
-              </div>
-            </form></div>';
+
+    // Rendered markup.
+    $markup = '<div class="wb-srch-multi"><form class="form-inline" method="get" action="' . $search_path . '">';
+    $markup .= '<div>' . $body . '</div>';
+    $markup .= '<div class="form-item form-group"><p>';
+    $markup .= '<label class="wb-invisible" for="' . $unique_id . '">' . t('Search Data') . '</label>';
+    $markup .= '<input title="" class="form-control search" placeholder="" data-toggle="tooltip" type="search" id="' . $unique_id . '" name="' . $filter . '" value="" size="15" maxlength="128" autocomplete="off">';
+    $markup .= '<button class="btn btn-primary btn-small form-submit" data-icon="search" type="submit" value="search"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">' . t('Search') . '</span></button>';
+    $markup .= '</p></div></form></div>';
+
     $content['search_bean_box']['#markup'] = $markup;
 
     return $content;

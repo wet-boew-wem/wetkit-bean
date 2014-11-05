@@ -29,7 +29,7 @@ class WetKitHighlightBean extends BeanPlugin {
       '#tree' => TRUE,
       '#weight' => 1,
       '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
+      '#collapsed' => FALSE,
     );
     $form['wetkit_bean_highlight_title_settings']['classes'] = array(
       '#description' => t('CSS classes to be added to the title field.'),
@@ -49,30 +49,40 @@ class WetKitHighlightBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
+    // Settings.
+    $classes = isset($bean->wetkit_bean_highlight_title_settings['classes']) ? $bean->wetkit_bean_highlight_title_settings['classes'] : '';
+
+    // Tile Field.
     $title = field_get_items('bean', $bean, 'title_field');
     $title = field_view_value('bean', $bean, 'title_field', $title[0], array());
     $title = render($title);
 
+    // Link Field.
     $link = field_get_items('bean', $bean, 'field_bean_highlight_link');
     $link = field_view_value('bean', $bean, 'field_bean_highlight_link', $link[0], array());
     $linktitle = $link['#element']['title'];
     $linkurl = $link['#element']['display_url'];
 
+    // Image Field.
     $image = field_get_items('bean', $bean, 'field_bean_highlight_image');
-    $image = field_view_value('bean', $bean, 'field_bean_highlight_image', $image[0], array());
+    $image = field_view_value('bean', $bean, 'field_bean_highlight_image', $image[0], array('settings' => array('image_style' => 'activities')));
     $image = render($image);
 
-    $linktext = field_get_items('bean', $bean, 'field_bean_highlight_link_text');
-    $linktext = field_view_value('bean', $bean, 'field_bean_highlight_link_text', $linktext[0], array());
-    $linktext = render($linktext);
+    // Body Field.
+    $body = field_get_items('bean', $bean, 'field_bean_highlight_description');
+    $body = field_view_value('bean', $bean, 'field_bean_highlight_description', $body[0], array());
+    $body = render($body);
 
+    // Reset content.
     $content = array();
 
-    $markup = '<section class="col-lg-4 col-md-6"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">'
-                . '<h3>' . $linktitle . '</h3>'
-                . $image .
-              '</a>' .
-              '<p>' . $linktext . '</p></section>';
+    // Rendered markup.
+    $markup = '<section class="col-lg-4 col-md-6"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">';
+    $markup .= '<h3>' . $title . '</h3>';
+    $markup .= $image;
+    $markup .= '</a>';
+    $markup .= $body . '</section>';
+
     $content['highlight']['#markup'] = $markup;
 
     return $content;

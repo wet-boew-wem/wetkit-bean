@@ -121,15 +121,16 @@ class WetKitTwitterBean extends BeanPlugin {
    */
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
+    // Settings.
     $span = isset($bean->twitter_settings['configure_twitter_widget']) ? $bean->twitter_settings['configure_twitter_widget'] : '';
     $custom_css = isset($bean->twitter_settings['custom_css']) ? $bean->twitter_settings['custom_css'] : '';
-
     $widget_id = isset($bean->twitter_settings['widget_id']) ? $bean->twitter_settings['widget_id'] : '';
     $widget_type = isset($bean->twitter_settings['widget_type']) ? $bean->twitter_settings['widget_type'] : 'search';
     $username = isset($bean->twitter_settings['username']) ? $bean->twitter_settings['username'] : '';
     $search_query = isset($bean->twitter_settings['search_query']) ? $bean->twitter_settings['search_query'] : '';
     $tweet_limit = isset($bean->twitter_settings['tweet_limit']) ? 'data-tweet-limit="' . $bean->twitter_settings['tweet_limit'] . '"' : '';
 
+    // Twitter method.
     $url = "https://twitter.com/";
     switch ($widget_type) {
       case 'profile':
@@ -138,18 +139,20 @@ class WetKitTwitterBean extends BeanPlugin {
         $url .= 'search?q=' . $search_query;
     }
 
+    // Title field.
     $title = field_get_items('bean', $bean, 'title_field');
     $title = field_view_value('bean', $bean, 'title_field', $title[0], array());
     $title = render($title);
 
+    // Reset content.
     $content = array();
 
-    $markup = '<section>
-                <div class="wb-twitter">
-                  <h2>' . $title . '</h2>
-                  <a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '" ' . $tweet_limit . '>Tweets</a>
-                </div>
-              </section>';
+    // Rendered markup.
+    $markup = '<section><div class="wb-twitter">';
+    $markup .= '<h2>' . $title . '</h2>';
+    $markup .= '<a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '" ' . $tweet_limit . '>Tweets</a>';
+    $markup .= '</div></section>';
+
     $content['share_twitter']['#markup'] = $markup;
 
     return $content;
