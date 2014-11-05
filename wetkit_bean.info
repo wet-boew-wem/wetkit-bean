@@ -98,6 +98,7 @@ features[variable][] = field_bundle_settings_field_collection_item__field_bean_m
 features[variable][] = field_bundle_settings_field_collection_item__field_bean_slide_collection
 files[] = plugins/bean/wetkit_bean.bean.inc
 files[] = plugins/bean/wetkit_bean.highlight.inc
+files[] = plugins/bean/wetkit_bean.link.inc
 files[] = plugins/bean/wetkit_bean.media.inc
 files[] = plugins/bean/wetkit_bean.search.inc
 files[] = plugins/bean/wetkit_bean.share.inc

@@ -43,6 +43,16 @@ function wetkit_bean_bean_types() {
       'file' => 'wetkit_bean.highlight.inc',
     ),
   );
+  $plugins['wetkit_link'] = array(
+    'label' => t('Link'),
+    'description' => t('A custom bean for displaying icons and associated links.'),
+    'handler' => array(
+      'class' => 'WetKitLinkBean',
+      'parent' => 'bean',
+      'path' => $plugin_path,
+      'file' => 'wetkit_bean.link.inc',
+    ),
+  );
   $plugins['wetkit_media'] = array(
     'label' => t('Media'),
     'description' => t('A custom bean for displaying accessible media.'),
