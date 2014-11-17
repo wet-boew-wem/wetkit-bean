@@ -10,6 +10,7 @@ class WetKitHighlightBean extends BeanPlugin {
    */
   public function values() {
     $values = array(
+      'image_style' => 'highlight',
       'wetkit_bean_highlight_title_settings' => array(
         'classes' => '',
       ),
@@ -23,6 +24,14 @@ class WetKitHighlightBean extends BeanPlugin {
   public function form($bean, $form, &$form_state) {
     $form = array();
 
+    $form['image_style'] = array(
+      '#type' => 'select',
+      '#title' => t('Image style'),
+      '#options' => drupal_map_assoc(array_keys(image_styles())),
+      '#default_value' => $bean->image_style,
+      '#empty_value' => '',
+      '#weight' => 2,
+    );
     $form['wetkit_bean_highlight_title_settings'] = array(
       '#type' => 'fieldset',
       '#title' => t('Configure Title Field'),
@@ -51,6 +60,10 @@ class WetKitHighlightBean extends BeanPlugin {
 
     // Settings.
     $classes = isset($bean->wetkit_bean_highlight_title_settings['classes']) ? $bean->wetkit_bean_highlight_title_settings['classes'] : '';
+    $image_style = isset($bean->image_style) ? $bean->image_style : '';
+    if ($image_style == '<none>') {
+      $image_style = '';
+    }
 
     // Tile Field.
     $title = field_get_items('bean', $bean, 'title_field');
@@ -65,7 +78,7 @@ class WetKitHighlightBean extends BeanPlugin {
 
     // Image Field.
     $image = field_get_items('bean', $bean, 'field_bean_highlight_image');
-    $image = field_view_value('bean', $bean, 'field_bean_highlight_image', $image[0], array('settings' => array('image_style' => 'activities')));
+    $image = field_view_value('bean', $bean, 'field_bean_highlight_image', $image[0], array('settings' => array('image_style' => $image_style)));
     $image = render($image);
 
     // Body Field.
