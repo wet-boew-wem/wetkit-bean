@@ -29,7 +29,7 @@ class WetKitHighlightBean extends BeanPlugin {
       '#title' => t('Image style'),
       '#options' => drupal_map_assoc(array_keys(image_styles())),
       '#default_value' => $bean->image_style,
-      '#empty_value' => '',
+      '#empty_value' => '<none>',
       '#weight' => 2,
     );
     $form['wetkit_bean_highlight_title_settings'] = array(
