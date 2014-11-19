@@ -10,7 +10,7 @@ class WetKitHighlightBean extends BeanPlugin {
    */
   public function values() {
     $values = array(
-      'image_style' => 'highlight',
+      'image_style' => 'highlighted',
       'wetkit_bean_highlight_title_settings' => array(
         'classes' => '',
       ),
