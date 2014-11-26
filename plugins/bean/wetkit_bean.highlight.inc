@@ -11,13 +11,15 @@ class WetKitHighlightBean extends BeanPlugin {
   public function values() {
     $values = array(
       'image_style' => 'highlighted',
-      'wetkit_bean_highlight_title_settings' => array(
+      'wetkit_bean_highlight_type' => array(
         'classes' => '',
+        'type' => 'global',
       ),
     );
 
     return array_merge(parent::values(), $values);
   }
+
   /**
    * Builds extra settings for the block edit form.
    */
@@ -32,22 +34,31 @@ class WetKitHighlightBean extends BeanPlugin {
       '#empty_value' => '<none>',
       '#weight' => 2,
     );
-    $form['wetkit_bean_highlight_title_settings'] = array(
+    $form['wetkit_bean_highlight_type'] = array(
       '#type' => 'fieldset',
-      '#title' => t('Configure Title Field'),
+      '#title' => t('Configure Highlight Bean'),
       '#tree' => TRUE,
       '#weight' => 1,
       '#collapsible' => TRUE,
       '#collapsed' => FALSE,
     );
-    $form['wetkit_bean_highlight_title_settings']['classes'] = array(
+    $form['wetkit_bean_highlight_type']['classes'] = array(
       '#description' => t('CSS classes to be added to the title field.'),
       '#type' => 'textfield',
       '#title' => t('CSS'),
-      '#default_value' => isset($bean->wetkit_bean_highlight_title_settings['classes']) ? $bean->wetkit_bean_highlight_title_settings['classes'] : '',
+      '#default_value' => isset($bean->wetkit_bean_highlight_type['classes']) ? $bean->wetkit_bean_highlight_type['classes'] : '',
       '#size' => 60,
       '#maxlength' => 128,
       '#required' => FALSE,
+    );
+    $form['wetkit_bean_highlight_type']['type'] = array(
+      '#type' => 'select',
+      '#title' => t('How should the highlight type be rendered?'),
+      '#options' => array(
+        'global' => t('Global'),
+        'site' => t('Site'),
+      ),
+      '#default_value' => isset($bean->wetkit_bean_highlight_type['type']) ? $bean->wetkit_bean_highlight_type['type'] : 'global',
     );
 
     return $form;
@@ -59,11 +70,12 @@ class WetKitHighlightBean extends BeanPlugin {
   public function view($bean, $content, $view_mode = 'default', $langcode = NULL) {
 
     // Settings.
-    $classes = isset($bean->wetkit_bean_highlight_title_settings['classes']) ? $bean->wetkit_bean_highlight_title_settings['classes'] : '';
     $image_style = isset($bean->image_style) ? $bean->image_style : '';
     if ($image_style == '<none>') {
       $image_style = '';
     }
+    $classes = isset($bean->wetkit_bean_highlight_type['classes']) ? $bean->wetkit_bean_highlight_type['classes'] : '';
+    $type = isset($bean->wetkit_bean_highlight_type['type']) ? $bean->wetkit_bean_highlight_type['type'] : '';
 
     // Tile Field.
     $title = field_get_items('bean', $bean, 'title_field');
@@ -90,12 +102,20 @@ class WetKitHighlightBean extends BeanPlugin {
     $content = array();
 
     // Rendered markup.
-    $markup = '<section class="col-lg-4 col-md-6"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">';
-    $markup .= '<h3>' . $title . '</h3>';
-    $markup .= $image;
-    $markup .= '</a>';
-    $markup .= $body . '</section>';
-
+    if ($type == 'site') {
+      $markup = '<section class="gc-nttvs"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">';
+      $markup .= $image;
+      $markup .= '<h4>' . $title . '</h4>';
+      $markup .= '</a>';
+      $markup .= $body . '</section>';
+    }
+    else {
+      $markup = '<section class="col-lg-4 col-md-6"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">';
+      $markup .= '<h3>' . $title . '</h3>';
+      $markup .= $image;
+      $markup .= '</a>';
+      $markup .= $body . '</section>';
+    }
     $content['highlight']['#markup'] = $markup;
 
     return $content;
