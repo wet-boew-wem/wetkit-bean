@@ -394,7 +394,7 @@ function wetkit_bean_wetkit_bean_plugin_info() {
 function wetkit_bean_configure_form($form, &$form_state) {
   $form = array();
   $form['wetkit_bean'] = array(
-    '#title' => 'Override Settings',
+    '#title' => t('Override Settings'),
     '#type'  => 'fieldset',
     '#collapsible' => 'true',
   );
