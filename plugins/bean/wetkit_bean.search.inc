@@ -14,12 +14,13 @@ class WetKitSearchBean extends BeanPlugin {
         'backgrounds' => 'background-accent',
       ),
       'search_placeholder' => array(
-        'placeholder_text' => 'e.g. population',
+        'placeholder_text' => t('e.g. population'),
       ),
     );
 
     return array_merge(parent::values(), $values);
   }
+
   /**
    * Builds extra settings for the block edit form.
    */
