@@ -112,6 +112,7 @@ files[] = plugins/bean/wetkit_bean.search.inc
 files[] = plugins/bean/wetkit_bean.share.inc
 files[] = plugins/bean/wetkit_bean.rate.inc
 files[] = plugins/bean/wetkit_bean.slide.inc
+files[] = plugins/bean/wetkit_bean.slideout.inc
 files[] = plugins/bean/wetkit_bean.twitter.inc
 files[] = plugins/beanslide/interface.inc
 files[] = plugins/beanslide/tabbedinterface.inc
