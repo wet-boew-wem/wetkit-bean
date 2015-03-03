@@ -111,7 +111,7 @@ class WetKitHighlightBean extends BeanPlugin {
     }
     else {
       $markup = '<section class="col-lg-4 col-md-6"><a href="' . $linkurl . '" rel="external" title="' . $linktitle . '">';
-      $markup .= '<h3>' . $title . '</h3>';
+      $markup .= '<h3 class="' . $classes . '">' . $title . '</h3>';
       $markup .= $image;
       $markup .= '</a>';
       $markup .= $body . '</section>';
