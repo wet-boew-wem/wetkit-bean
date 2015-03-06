@@ -95,11 +95,6 @@ class WetKitSearchBean extends BeanPlugin {
     $search_path = field_view_value('bean', $bean, 'field_bean_search_path', $search_path[0], array());
     $search_path = render($search_path);
 
-    // Body Path.
-    $body = field_get_items('bean', $bean, 'field_bean_wetkit_body');
-    $body = field_view_value('bean', $bean, 'field_bean_wetkit_body', $body[0], array());
-    $body = render($body);
-
     // Background Styles.
     $background = isset($bean->title_settings['backgrounds']) ? $bean->title_settings['backgrounds'] : '';
 
@@ -117,7 +112,6 @@ class WetKitSearchBean extends BeanPlugin {
 
     // Rendered markup.
     $markup = '<div class="wb-srch-multi"><form class="form-inline" method="get" action="' . $search_path . '">';
-    $markup .= '<div>' . $body . '</div>';
     $markup .= '<div class="form-item form-group"><p>';
     $markup .= '<label class="wb-invisible" for="' . $unique_id . '">' . t('Search Data') . '</label>';
     $markup .= '<input title="" class="form-control search" placeholder="" data-toggle="tooltip" type="search" id="' . $unique_id . '" name="' . $filter . '" value="" size="15" maxlength="128" autocomplete="off">';

@@ -32,10 +32,11 @@ class WetKitLinkBean extends BeanPlugin {
     $title = render($title);
 
     // Links Field.
+    $links_markup = '';
     $links = field_get_items('bean', $bean, 'field_bean_link');
     foreach ($links as $key => $val) {
       $links_tmp = field_view_value('bean', $bean, 'field_bean_link', $links[$key], array());
-      $links_markup .= '<li>' . render($links_tmp) . '</li>';
+      $links_markup = '<li>' . render($links_tmp) . '</li>';
     }
 
     // Reset content.
