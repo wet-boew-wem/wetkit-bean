@@ -11,7 +11,7 @@ class WetKitRateBean extends BeanPlugin {
   public function values() {
     $values = array(
       'rate_settings' => array(
-        'configure_rate_widget_span' => 'span-4',
+        'configure_rate_widget_span' => 'col-md-4',
         'rate_machine_name' => '',
       ),
     );
@@ -36,13 +36,18 @@ class WetKitRateBean extends BeanPlugin {
       '#type' => 'select',
       '#title' => t('Configure the Rate Widget Span'),
       '#options' => array(
-        'span-2' => t('Span 2'),
-        'span-3' => t('Span 3'),
-        'span-4' => t('Span 4'),
-        'span-5' => t('Span 5'),
-        'span-6' => t('Span 6'),
-        'span-7' => t('Span 7'),
-        'span-8' => t('Span 8'),
+        'col-md-1' => t('Medium 1'),
+        'col-md-2' => t('Medium 2'),
+        'col-md-3' => t('Medium 3'),
+        'col-md-4' => t('Medium 4'),
+        'col-md-5' => t('Medium 5'),
+        'col-md-6' => t('Medium 6'),
+        'col-md-7' => t('Medium 7'),
+        'col-md-8' => t('Medium 8'),
+        'col-md-9' => t('Medium 9'),
+        'col-md-10' => t('Medium 10'),
+        'col-md-11' => t('Medium 11'),
+        'col-md-12' => t('Medium 12'),
       ),
       '#default_value' => isset($bean->rate_settings['configure_rate_widget_span']) ? $bean->rate_settings['configure_rate_widget_span'] : '',
     );
