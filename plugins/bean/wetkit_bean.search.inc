@@ -70,7 +70,7 @@ class WetKitSearchBean extends BeanPlugin {
 
     $form['search_filter'] = array(
       '#type' => 'textfield',
-      '#title' => t('Enter the filter name name for search'),
+      '#title' => t('Enter the filter name for search'),
       '#default_value' => isset($bean->search_filter) ? $bean->search_filter : 'q',
       '#size' => 60,
       '#maxlength' => 128,
@@ -114,7 +114,7 @@ class WetKitSearchBean extends BeanPlugin {
     $markup = '<div class="wb-srch-multi"><form class="form-inline" method="get" action="' . $search_path . '">';
     $markup .= '<div class="form-item form-group"><p>';
     $markup .= '<label class="wb-invisible" for="' . $unique_id . '">' . t('Search Data') . '</label>';
-    $markup .= '<input title="" class="form-control search" placeholder="" data-toggle="tooltip" type="search" id="' . $unique_id . '" name="' . $filter . '" value="" size="15" maxlength="128" autocomplete="off">';
+    $markup .= '<input title="" class="form-control search" placeholder="' . $placeholder . '" data-toggle="tooltip" type="search" id="' . $unique_id . '" name="' . $filter . '" value="" size="15" maxlength="128" autocomplete="off">';
     $markup .= '<button class="btn btn-primary btn-small form-submit" data-icon="search" type="submit" value="search"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">' . t('Search') . '</span></button>';
     $markup .= '</p></div></form></div>';
 
