@@ -51,16 +51,6 @@ class WetKitShareBean extends BeanPlugin {
       ),
       '#default_value' => isset($bean->share_settings['configure_share_widget']) ? $bean->share_settings['configure_share_widget'] : '',
     );
-    $form['share_settings']['email'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Add sharing by email?'),
-      '#default_value' => isset($bean->share_settings['email']) ? $bean->share_settings['email'] : '',
-    );
-    $form['share_settings']['source_tag'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Add a source tag'),
-      '#default_value' => isset($bean->share_settings['source_tag']) ? $bean->share_settings['source_tag'] : '',
-    );
     $form['share_settings']['custom_css'] = array(
       '#type' => 'textfield',
       '#title' => t('Configure Shared Widget Custom CSS'),
@@ -80,8 +70,6 @@ class WetKitShareBean extends BeanPlugin {
 
     $span = isset($bean->share_settings['configure_share_widget']) ? $bean->share_settings['configure_share_widget'] : '';
     $custom_css = isset($bean->share_settings['custom_css']) ? $bean->share_settings['custom_css'] : '';
-    $email = isset($bean->share_settings['email']) && $bean->share_settings['email'] ? ', addEmail:true' : '';
-    $source_tag = isset($bean->share_settings['source_tag']) && !empty($bean->share_settings['source_tag'])?  ', sourceTag: \'' . $bean->share_settings['source_tag'] . '\'' : '';
 
     // Sites.
     $sites = array();
