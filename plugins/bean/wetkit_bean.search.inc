@@ -10,9 +10,6 @@ class WetKitSearchBean extends BeanPlugin {
    */
   public function values() {
     $values = array(
-      'title_settings' => array(
-        'backgrounds' => 'background-accent',
-      ),
       'search_placeholder' => array(
         'placeholder_text' => t('e.g. population'),
       ),
@@ -27,29 +24,6 @@ class WetKitSearchBean extends BeanPlugin {
    */
   public function form($bean, $form, &$form_state) {
     $form = array();
-
-    $form['title_settings'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Configure Title'),
-      '#tree' => TRUE,
-      '#weight' => -8,
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
-    );
-    $form['title_settings']['backgrounds'] = array(
-      '#type' => 'select',
-      '#title' => t('Configure Backgrounds'),
-      '#options' => array(
-        '' => t('None'),
-        'background-white' => t('Background White'),
-        'background-light' => t('Background Light'),
-        'background-medium' => t('Background Medium'),
-        'background-dark' => t('Background Dark'),
-        'background-accent' => t('Background Accent'),
-        'background-highlight' => t('Background Highlight'),
-      ),
-      '#default_value' => isset($bean->title_settings['backgrounds']) ? $bean->title_settings['backgrounds'] : '',
-    );
 
     $form['search_placeholder'] = array(
       '#type' => 'fieldset',
