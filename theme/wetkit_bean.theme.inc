@@ -102,12 +102,13 @@ function theme_wetkit_slide_header($variables) {
   $output = '';
   if (!empty($items)) {
     $output .= "<$type" . drupal_attributes($attributes) . '>';
-    $attributes = array();
 
     $num_items = count($items);
     $i = 0;
     foreach ($items as $item) {
       $i++;
+
+      $attributes = array();
       if ($i == 1) {
         $attributes['class'][] = 'first';
         $attributes['class'][] = 'active';
