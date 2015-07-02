@@ -154,7 +154,7 @@ class WetKitTwitterBean extends BeanPlugin {
 
     // Rendered markup.
     $markup = '<section><div class="wb-twitter ' . $custom_css . ' ' . $span . '">';
-    $markup .= '<h2>' . $title . '</h2>';
+    $markup .= (empty($title)) ? '' : '<h2>' . $title . '</h2>' ;
     $markup .= '<a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '" ' . $tweet_limit . '>Tweets</a>';
     $markup .= '</div></section>';
 
