@@ -280,20 +280,8 @@ function theme_wetkit_media_collection($variables) {
 function theme_wetkit_slideout(&$variables) {
   $show_title = $variables['show_title'];
   $hide_title = $variables['hide_title'];
-  $contents = $variables['contents'];
   $icon = $variables['icon'];
-  $render = $variables['slideout_render'];
-  $form_name = $variables['slideout_form'];
-
-  if ($render == 'form') {
-    $form = drupal_get_form($form_name);
-    unset($form['wetkit_wetboew']['wetkit_wetboew_theme']['#description']);
-    unset($form['wetkit_wetboew']['wetkit_wetboew_minified']['#description']);
-    $body = drupal_render($form);
-  }
-  else {
-    $body = drupal_render_children($contents);
-  }
+  $body = $variables['content'];
 
   $output = '<div id="slide-panel" class="">';
   $output .= '<a href="#" class="btn btn-primary" id="opener">' . theme('icon', $icon) . '</a>';

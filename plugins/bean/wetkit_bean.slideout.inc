@@ -72,6 +72,9 @@ class WetKitSlideOutBean extends BeanPlugin {
     $hidetext = field_get_items('bean', $bean, 'field_slideout_hide');
     $icon = field_get_items('bean', $bean, 'field_bean_icon');
 
+    // Storage.
+    $data = array();
+
     if (is_array($showtext)) {
       $showtext = reset($showtext);
       $showtext = $showtext['safe_value'];
@@ -92,15 +95,30 @@ class WetKitSlideOutBean extends BeanPlugin {
       $icon = '';
     }
 
+    // Render Cache or fallback to Bean.
+    if ($render == 'form') {
+      $data = array(
+        '#pre_render' => array('_wetkit_bean_slideout_prerender'),
+        '#cache' => array(
+          'keys' => array('wetkit_bean', 'slideout', $form_name),
+          'expire' => CACHE_TEMPORARY,
+          'granularity' => DRUPAL_CACHE_PER_USER
+        ),
+        '#slideout_form' => $form_name,
+      );
+      $data = drupal_render($data);
+    }
+    else {
+      $data = drupal_render_children($content['bean']);
+    }
+
     // Render form.
     $form = array(
       '#theme' => 'wetkit_slideout',
       '#show_title' => $showtext,
       '#hide_title' => $hidetext,
       '#icon' => $icon,
-      '#contents' => $content['bean'],
-      '#slideout_render' => $render,
-      '#slideout_form' => $form_name,
+      '#content' => $data,
     );
 
     return $form;
@@ -112,4 +130,15 @@ class WetKitSlideOutBean extends BeanPlugin {
   public function submit(Bean $bean) {
     return parent::submit($bean);
   }
+}
+
+/**
+ * Pre Render handler for cache based bean handling.
+ */
+function _wetkit_bean_slideout_prerender($element) {
+  $data = drupal_get_form($element['#slideout_form']);
+  unset($data['wetkit_wetboew']['wetkit_wetboew_theme']['#description']);
+  unset($data['wetkit_wetboew']['wetkit_wetboew_minified']['#description']);
+  $element['content'] = $data;
+  return $element;
 }

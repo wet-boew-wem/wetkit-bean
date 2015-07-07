@@ -179,9 +179,7 @@ function wetkit_bean_theme() {
       'show_title' => '',
       'hide_title' => '',
       'icon' => '',
-      'contents' => array(),
-      'slideout_render' => '',
-      'slideout_form' => '',
+      'content' => array(),
     ),
   );
 
