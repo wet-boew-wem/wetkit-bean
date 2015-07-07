@@ -180,6 +180,7 @@ function wetkit_bean_theme() {
       'hide_title' => '',
       'icon' => '',
       'content' => array(),
+      'slideout_render' => '',
     ),
   );
 

@@ -283,6 +283,13 @@ function theme_wetkit_slideout(&$variables) {
   $icon = $variables['icon'];
   $body = $variables['content'];
 
+  if ($variables['slideout_render'] == 'form') {
+    $body = drupal_render($body);
+  }
+  else {
+    $body = drupal_render_children($body);
+  }
+
   $output = '<div id="slide-panel" class="">';
   $output .= '<a href="#" class="btn btn-primary" id="opener">' . theme('icon', $icon) . '</a>';
   $output .= $body;

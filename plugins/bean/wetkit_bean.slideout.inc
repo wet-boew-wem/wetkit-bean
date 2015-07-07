@@ -102,14 +102,13 @@ class WetKitSlideOutBean extends BeanPlugin {
         '#cache' => array(
           'keys' => array('wetkit_bean', 'slideout', $form_name),
           'expire' => CACHE_TEMPORARY,
-          'granularity' => DRUPAL_CACHE_PER_USER
+          'granularity' => DRUPAL_CACHE_PER_ROLE,
         ),
         '#slideout_form' => $form_name,
       );
-      $data = drupal_render($data);
     }
     else {
-      $data = drupal_render_children($content['bean']);
+      $data = $content['bean'];
     }
 
     // Render form.
@@ -119,6 +118,7 @@ class WetKitSlideOutBean extends BeanPlugin {
       '#hide_title' => $hidetext,
       '#icon' => $icon,
       '#content' => $data,
+      '#slideout_render' => $render,
     );
 
     return $form;
