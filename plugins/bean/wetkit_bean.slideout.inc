@@ -102,7 +102,7 @@ class WetKitSlideOutBean extends BeanPlugin {
         '#cache' => array(
           'keys' => array('wetkit_bean', 'slideout', $form_name),
           'expire' => CACHE_TEMPORARY,
-          'granularity' => DRUPAL_CACHE_PER_ROLE,
+          'granularity' => DRUPAL_CACHE_PER_USER
         ),
         '#slideout_form' => $form_name,
       );
