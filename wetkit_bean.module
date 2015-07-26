@@ -386,6 +386,7 @@ function wetkit_bean_wetkit_bean_plugin_info() {
     ),
   );
 }
+
 /**
  * Configuration Form for WetKit Bean.
  */
