@@ -386,26 +386,21 @@ function wetkit_bean_wetkit_bean_plugin_info() {
     ),
   );
 }
-
 /**
  * Configuration Form for WetKit Bean.
  */
 function wetkit_bean_configure_form($form, &$form_state) {
   $form = array();
   $form['wetkit_bean'] = array(
-    '#title' => t('Override Settings'),
-    '#type'  => 'fieldset',
-    '#collapsible' => 'true',
+    '#type' => 'fieldset',
+    '#title' => t('WetKit Bean Settings'),
+    '#collapsible' => TRUE,
   );
-  $form['wetkit_bean']['rebuild_menu_description'] = array(
-    '#markup' => '<p>' . t('Rebuild the beans on the site using demo content.') . '</p>',
-  );
-  $form['wetkit_bean']['rebuild_menu'] = array(
-    '#type' => 'submit',
-    '#value' => t('Rebuild Default Bean(s)'),
-    '#weight' => 19,
+  $form['wetkit_bean']['future_options'] = array(
+    '#markup' => '<p>' . t('Future options will appear here to configure WetKit Bean.') . '</p>',
   );
   $form['#submit'][] = 'wetkit_bean_configure_form_submit';
+
   return system_settings_form($form);
 }
 
@@ -418,19 +413,8 @@ function wetkit_bean_configure_form($form, &$form_state) {
  *   A keyed array containing the current state of the form.
  */
 function wetkit_bean_configure_form_submit($form, &$form_state) {
-  if ($form_state['values']['op'] == t('Rebuild Default Bean(s)')) {
-    // Delete Beans if they exist already in the system.
-    wetkit_bean_delete_bean('Minister');
-    wetkit_bean_delete_bean('Priorities');
-    wetkit_bean_delete_bean('Stay-Connected');
-    wetkit_bean_delete_bean('Videos');
-
-    // Clear the bean cache so an anonymous user sees that the bean was deleted.
-    bean_reset();
-
-    // Recreate the default beans.
-    _wetkit_bean_load();
-  }
+  // Change query-strings on css/js files to enforce reload for all users.
+  _drupal_flush_css_js();
 }
 
 /**
