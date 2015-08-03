@@ -26,26 +26,41 @@ function theme_wetkit_slide_collection($variables) {
     $key = array_pop($key);
     $item = &$data['data']['entity']['field_collection_item'][$key];
 
-    if ($bean->data['image_style'] == '<none>') {
-      $images[] = file_create_url($item['field_slide_image'][0]['#item']['uri']);
-    }
-    else {
-      $images[] = image_style_url($item['field_slide_image'][0]['#image_style'], $item['field_slide_image'][0]['#item']['uri']);
+    if (isset($item['field_slide_image']['#field_type'])) {
+      // Only add url if an image has been added to this slide.
+      if ($bean->data['image_style'] == '<none>') {
+        $images[] = file_create_url($item['field_slide_image'][0]['#item']['uri']);
+      }
+      else {
+        $images[] = image_style_url($item['field_slide_image'][0]['#image_style'], $item['field_slide_image'][0]['#item']['uri']);
+      }
+    } else {
+      $images[] = '';
     }
   }
 
   // Collect title fields.
   $titles = array();
+  $slide_links = array();
   foreach ($items as $item_key => $data) {
     $key = array_keys($data['data']['entity']['field_collection_item']);
     $key = array_pop($key);
     $item = $data['data']['entity']['field_collection_item'][$key];
-
-    $titles[] = $item['field_slide_link']['#items'][0]['title'];
+    $titles[] = isset($item['field_slide_link']['#items'][0]['title']) ? $item['field_slide_link']['#items'][0]['title'] : '';
+    $slide_links[] = isset($item['field_slide_link']['#items'][0]['title']) ? $item['field_slide_link']['#items'][0]['title'] : '';
   }
 
   drupal_alter('wetkit_slide_slideshow', $items, $images, $bean);
   foreach ($items as $key => $data) {
+    if (empty($images[$key])) {
+      // This slide has no set image field, replace <figcaption> by a <section> element and add styling.
+      if (isset($data['data']['entity']['field_collection_item'])) {
+        $collection_id = key($data['data']['entity']['field_collection_item']);
+        $instance_settings =& $items[$key]['data']['entity']['field_collection_item'][$collection_id]['#groups']['group_bean_slide_caption']->format_settings['instance_settings'];
+        $instance_settings['element'] = 'section';
+        $instance_settings['classes'] = 'mrgn-lft-md mrgn-tp-md mrgn-rght-md';
+      }
+    }
     $items[$key] = drupal_render($data['data']);
   }
 
@@ -60,21 +75,32 @@ function theme_wetkit_slide_collection($variables) {
   // Support Tabbed Interface.
   if ($data['slideshow_plugin'] === 'wetkit_slide:tabbedinterface') {
 
+    $settings = isset($data['plugin_settings']) ? $data['plugin_settings'] : array();
+
     // Plugin Effects.
     $effects = array(
-      'animate_effect' => isset($data['plugin_settings']['animate_effect']) ? $data['plugin_settings']['animate_effect'] : '',
-      'autoplay' => isset($data['plugin_settings']['autoplay']) && $data['plugin_settings']['autoplay'] ? 'auto-play' : '',
-      'rotate_effect' => isset($data['plugin_settings']['rotate_effect']) ? $data['plugin_settings']['rotate_effect'] : '',
-      'tabs_style_effect' => isset($data['plugin_settings']['tabs_style_effect']) ? $data['plugin_settings']['tabs_style_effect'] : '',
+      'carousel' => isset($settings['carousel']) ? $settings['carousel'] : '',
+      'autoplay' => isset($settings['autoplay']) && $settings['autoplay'] ? 'playing' : '',
+      'rotate_speed' => isset($settings['rotate_speed']) ? $settings['rotate_speed'] : '',
+      'rotate_speed_custom' => isset($settings['rotate_speed_custom']) ? $settings['rotate_speed_custom'] : 3, // defaults to 3 seconds
+      'animate_effect' => isset($settings['animate_effect']) ? $settings['animate_effect'] : '',
     );
 
-    $css_classes = implode(" ", array_values($effects));
+    $tabs_attributes['class'] = array('wb-tabs', $effects['carousel'], $effects['autoplay']);
+
+    if ($effects['rotate_speed'] == 'custom') {
+      $tabs_attributes['data-wb-tabs']['interval'] = $effects['rotate_speed_custom'];
+    }
+    elseif (!empty($effects['rotate_speed'])) {
+      $tabs_attributes['class'][] = $effects['rotate_speed'];
+    }
+
     $title = t('Tab List');
     $header = theme('wetkit_slide_header', array('items' => $titles, 'title' => $title, 'type' => 'ul', 'attributes' => array('role' => array('tablist'))));
-    $output = '<div class="tabpanels">' . theme('wetkit_slide_tab_panels', array('items' => $items, 'title' => $title, 'type' => 'div', 'attributes' => array('class' => array('tabs-panel')))) . '</div>';
-    $css_classes = '';
-    $output = '<div class="wb-tabs carousel-s2 ' . $css_classes . '" data-speed="slow">' . $header . $output . '</div>';
+    $output = theme('wetkit_slide_tab_panels', array('images' => $images, 'items' => $items, 'title' => $title, 'animate_effect' => $effects['animate_effect'], 'attributes' => array('class' => array('tabpanels'))));
+    $output = '<div' . drupal_attributes($tabs_attributes) . '>' . $header . $output . '</div>';
   }
+
   // Support FlexSlider and jQuery.Cycle.
   else {
     $output = theme('item_list', array('items' => $items, 'attributes' => array('class' => array('slides'))));
@@ -103,21 +129,11 @@ function theme_wetkit_slide_header($variables) {
   if (!empty($items)) {
     $output .= "<$type" . drupal_attributes($attributes) . '>';
 
-    $num_items = count($items);
     $i = 0;
     foreach ($items as $item) {
       $i++;
-
-      $attributes = array();
-      if ($i == 1) {
-        $attributes['class'][] = 'first';
-        $attributes['class'][] = 'active';
-      }
-      if ($i == $num_items) {
-        $attributes['class'][] = 'last';
-      }
-
-      $output .= '<li' . drupal_attributes($attributes) . '><a href="#tabs' . $i . '">' . $item . "</a></li>\n";
+      $li_classes = ($i == 1) ? ' class="active"' : '';
+      $output .= '<li' . $li_classes . '><a href="#panel' . $i . '" title="' . $item . '">' . $i . "</a></li>\n";
     }
 
     $output .= "</$type>";
@@ -130,16 +146,17 @@ function theme_wetkit_slide_header($variables) {
  */
 function theme_wetkit_slide_tab_panels($variables) {
   $items = $variables['items'];
+  $images = $variables['images'];
   $title = $variables['title'];
-  $type = $variables['type'];
+  $animate_effect = $variables['animate_effect'];
   $attributes = $variables['attributes'];
 
   $output = '';
   if (!empty($items)) {
-    //$output .= "<$type" . drupal_attributes($attributes) . '>';
+    $output .= '<div' . drupal_attributes($attributes) . '>';
     $num_items = count($items);
     $i = 0;
-    foreach ($items as $item) {
+    foreach ($items as $item_key => $item) {
       $attributes = array();
       $children = array();
       $data = '';
@@ -158,29 +175,29 @@ function theme_wetkit_slide_tab_panels($variables) {
         }
       }
       else {
-        $data = '<figure>' . $item . '</figure>';
+        if (empty($images[$item_key])){
+          // Don't wrap in a <figure> element when no image is present.
+          $data = $item;
+        }
+        else {
+          $data = '<figure>' . $item . '</figure>';
+        }
       }
-
-      $attributes['id'][] = "tabs$i";
-      $attributes['class'][] = "fade";
+      $attributes['id'][] = "panel$i";
       $attributes['role'][] = "tabpanel";
 
       if ($i == 1) {
         $attributes['class'][] = 'in';
-      } else {
+      }
+      else {
         $attributes['class'][] = 'out';
       }
-
-      if ($i == $num_items) {
-        $attributes['class'][] = 'last';
-      }
-
+      $attributes['class'][] = $animate_effect;
       $output .= '<div' . drupal_attributes($attributes) . '>' . $data . "</div>\n";
 
     }
-    //$output .= "</$type>";
+    $output .= '</div>';
   }
-
   return $output;
 }
 

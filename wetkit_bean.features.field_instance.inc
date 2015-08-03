@@ -120,7 +120,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_highlight-field_bean_highlight_description'
+  // Exported field_instance:
+  // 'bean-wetkit_highlight-field_bean_highlight_description'
   $field_instances['bean-wetkit_highlight-field_bean_highlight_description'] = array(
     'bundle' => 'wetkit_highlight',
     'default_value' => NULL,
@@ -275,7 +276,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_highlight-field_bean_highlight_link_text'
+  // Exported field_instance:
+  // 'bean-wetkit_highlight-field_bean_highlight_link_text'
   $field_instances['bean-wetkit_highlight-field_bean_highlight_link_text'] = array(
     'bundle' => 'wetkit_highlight',
     'default_value' => NULL,
@@ -1031,7 +1033,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_caption'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_media_collection-field_media_caption'
   $field_instances['field_collection_item-field_bean_media_collection-field_media_caption'] = array(
     'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
@@ -1084,7 +1087,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_file'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_media_collection-field_media_file'
   $field_instances['field_collection_item-field_bean_media_collection-field_media_file'] = array(
     'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
@@ -1137,7 +1141,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_media_collection-field_media_poster'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_media_collection-field_media_poster'
   $field_instances['field_collection_item-field_bean_media_collection-field_media_poster'] = array(
     'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
@@ -1196,7 +1201,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_slide_collection-field_slide_headline'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_slide_collection-field_slide_headline'
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_headline'] = array(
     'bundle' => 'field_bean_slide_collection',
     'default_value' => NULL,
@@ -1235,7 +1241,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_slide_collection-field_slide_image'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_slide_collection-field_slide_image'
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_image'] = array(
     'bundle' => 'field_bean_slide_collection',
     'deleted' => 0,
@@ -1305,7 +1312,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_slide_collection-field_slide_link'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_slide_collection-field_slide_link'
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_link'] = array(
     'bundle' => 'field_bean_slide_collection',
     'default_value' => NULL,
@@ -1368,7 +1376,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_bean_slide_collection-field_slide_teaser'
+  // Exported field_instance:
+  // 'field_collection_item-field_bean_slide_collection-field_slide_teaser'
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_teaser'] = array(
     'bundle' => 'field_bean_slide_collection',
     'default_value' => NULL,

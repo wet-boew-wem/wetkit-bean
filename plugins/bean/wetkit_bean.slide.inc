@@ -71,7 +71,7 @@ class WetKitSlideBean extends BeanPlugin {
       '#type' => 'select',
       '#title' => t('Image style'),
       '#options' => drupal_map_assoc(array_keys(image_styles())),
-      '#default_value' => $bean->image_style,
+      '#default_value' => isset($bean->image_style) ? $bean->image_style : '',
       '#empty_value' => '<none>',
     );
 

@@ -12,7 +12,7 @@
     unless $(context).hasClass("draggable")
 
       # Hide all current slide forms.
-      $("table#field-bean-slide-collection-values tr.draggable:not(:last, .bean-slide-processed)", context).each ->
+      $("table#field-bean-slide-collection-values tr.draggable:not(.bean-slide-processed)", context).each ->
         $form = $(this).addClass("bean-slide-processed").find("> td:nth-child(2)")
         Drupal.wetkitbeanAdmin.setupForm $form
         $form.before Drupal.wetkitbeanAdmin.createOverview($form)

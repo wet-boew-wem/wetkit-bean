@@ -12,7 +12,7 @@
   Drupal.behaviors.wetkitbeanAdmin = {
     attach: function(context, settings) {
       if (!$(context).hasClass("draggable")) {
-        $("table#field-bean-slide-collection-values tr.draggable:not(:last, .bean-slide-processed)", context).each(function() {
+          $("table#field-bean-slide-collection-values tr.draggable:not(.bean-slide-processed)", context).each(function() {
           var $form;
           $form = $(this).addClass("bean-slide-processed").find("> td:nth-child(2)");
           Drupal.wetkitbeanAdmin.setupForm($form);
