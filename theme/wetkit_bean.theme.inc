@@ -41,16 +41,14 @@ function theme_wetkit_slide_collection($variables) {
 
   // Collect title fields.
   $titles = array();
-  $slide_links = array();
   foreach ($items as $item_key => $data) {
     $key = array_keys($data['data']['entity']['field_collection_item']);
     $key = array_pop($key);
     $item = $data['data']['entity']['field_collection_item'][$key];
     $titles[] = isset($item['field_slide_link']['#items'][0]['title']) ? $item['field_slide_link']['#items'][0]['title'] : '';
-    $slide_links[] = isset($item['field_slide_link']['#items'][0]['title']) ? $item['field_slide_link']['#items'][0]['title'] : '';
   }
 
-  drupal_alter('wetkit_slide_slideshow', $items, $images, $bean);
+  drupal_alter('wetkit_slide_slideshow', $titles, $items, $images, $bean);
   foreach ($items as $key => $data) {
     if (empty($images[$key])) {
       // This slide has no set image field, replace <figcaption> by a <section> element and add styling.
