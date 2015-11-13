@@ -18,6 +18,7 @@ class WetKitShareBean extends BeanPlugin {
 
     return array_merge(parent::values(), $values);
   }
+
   /**
    * Builds extra settings for the block edit form.
    */
@@ -73,8 +74,10 @@ class WetKitShareBean extends BeanPlugin {
 
     // Sites.
     $sites = array();
-    foreach ($bean->field_share_widget[LANGUAGE_NONE] as $service) {
-      $sites[] = $service['value'];
+    if (!empty($bean->field_share_widget)) {
+      foreach ($bean->field_share_widget[LANGUAGE_NONE] as $service) {
+        $sites[] = $service['value'];
+      }
     }
 
     // Reset content.
