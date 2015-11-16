@@ -37,6 +37,7 @@ class WetKitShareBean extends BeanPlugin {
       '#type' => 'select',
       '#title' => t('Configure Share Span'),
       '#options' => array(
+        '' => t('None'),
         'col-md-1' => t('Medium 1'),
         'col-md-2' => t('Medium 2'),
         'col-md-3' => t('Medium 3'),
