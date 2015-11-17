@@ -87,8 +87,9 @@ function wetkit_bean_field_formatter_settings_summary($field, $instance, $view_m
   $link_types = array(
     'content' => t('Linked to content'),
   );
+
   // Display this setting only if field is linked.
-  if (isset($link_types[$settings['wetkit_bean_link']])) {
+  if (!empty($settings) && isset($link_types[$settings['wetkit_bean_link']])) {
     $summary[] = $link_types[$settings['wetkit_bean_link']];
   }
 
