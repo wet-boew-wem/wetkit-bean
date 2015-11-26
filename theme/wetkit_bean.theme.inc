@@ -253,8 +253,6 @@ function theme_wetkit_media_collection($variables) {
   }
 
   // Attribute handling.
-  $media_attributes['width'] = '480';
-  $media_attributes['height'] = '270';
   if ($type_of_media == 'video') {
     $media_attributes['poster'] = $poster;
   }
