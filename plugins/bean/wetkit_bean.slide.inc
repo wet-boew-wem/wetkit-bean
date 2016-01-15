@@ -11,7 +11,7 @@ class WetKitSlideBean extends BeanPlugin {
    */
   public function values() {
     return array(
-      'image_style' => 'highlight',
+      'image_style' => '<none>',
       'navigation' => array(
         'position' => '<none>',
         'previous' => '<',

@@ -11,7 +11,7 @@ class WetKitMediaBean extends BeanPlugin {
    */
   public function values() {
     return array(
-      'image_style' => 'highlight',
+      'image_style' => '<none>',
       'media_span' => 'col-md-3',
     );
   }
