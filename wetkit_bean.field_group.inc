@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function wetkit_bean_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -40,7 +40,7 @@ function wetkit_bean_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_bean_highlight|bean|highlight|default'] = $field_group;
+  $field_groups['group_bean_highlight|bean|highlight|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -74,7 +74,7 @@ function wetkit_bean_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_bean_highlight|bean|wetkit_highlight|default'] = $field_group;
+  $field_groups['group_bean_highlight|bean|wetkit_highlight|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -104,7 +104,13 @@ function wetkit_bean_field_group_info() {
       'formatter' => '',
     ),
   );
-  $export['group_bean_slide_caption|field_collection_item|field_bean_slide_collection|default'] = $field_group;
+  $field_groups['group_bean_slide_caption|field_collection_item|field_bean_slide_collection|default'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Bean Highlight Group');
+  t('Caption');
+  t('Group Bean Highlight');
+
+  return $field_groups;
 }

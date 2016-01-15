@@ -10,7 +10,7 @@
 function wetkit_bean_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_bean_highlight_description'
+  // Exported field_base: 'field_bean_highlight_description'.
   $field_bases['field_bean_highlight_description'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_bean_highlight_image'
+  // Exported field_base: 'field_bean_highlight_image'.
   $field_bases['field_bean_highlight_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -56,7 +56,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_bean_highlight_link'
+  // Exported field_base: 'field_bean_highlight_link'.
   $field_bases['field_bean_highlight_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -86,7 +86,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_bean_highlight_link_text'
+  // Exported field_base: 'field_bean_highlight_link_text'.
   $field_bases['field_bean_highlight_link_text'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -108,7 +108,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_bean_icon'
+  // Exported field_base: 'field_bean_icon'.
   $field_bases['field_bean_icon'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -127,7 +127,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'icon_field',
   );
 
-  // Exported field_base: 'field_bean_link'
+  // Exported field_base: 'field_bean_link'.
   $field_bases['field_bean_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -158,7 +158,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_bean_media_collection'
+  // Exported field_base: 'field_bean_media_collection'.
   $field_bases['field_bean_media_collection'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -181,7 +181,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_bean_search_path'
+  // Exported field_base: 'field_bean_search_path'.
   $field_bases['field_bean_search_path'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -203,7 +203,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_bean_slide_collection'
+  // Exported field_base: 'field_bean_slide_collection'.
   $field_bases['field_bean_slide_collection'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -226,7 +226,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_bean_taxonomy'
+  // Exported field_base: 'field_bean_taxonomy'.
   $field_bases['field_bean_taxonomy'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -254,7 +254,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_media_caption'
+  // Exported field_base: 'field_media_caption'.
   $field_bases['field_media_caption'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -280,7 +280,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_media_file'
+  // Exported field_base: 'field_media_file'.
   $field_bases['field_media_file'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -306,7 +306,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_media_poster'
+  // Exported field_base: 'field_media_poster'.
   $field_bases['field_media_poster'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -331,7 +331,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_slide_headline'
+  // Exported field_base: 'field_slide_headline'.
   $field_bases['field_slide_headline'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -353,7 +353,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_slide_image'
+  // Exported field_base: 'field_slide_image'.
   $field_bases['field_slide_image'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -378,7 +378,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_slide_link'
+  // Exported field_base: 'field_slide_link'.
   $field_bases['field_slide_link'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -408,7 +408,7 @@ function wetkit_bean_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_slide_teaser'
+  // Exported field_base: 'field_slide_teaser'.
   $field_bases['field_slide_teaser'] = array(
     'active' => 1,
     'cardinality' => 1,

@@ -10,7 +10,7 @@
 function wetkit_bean_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'bean-wetkit_bean-field_bean_taxonomy'
+  // Exported field_instance: 'bean-wetkit_bean-field_bean_taxonomy'.
   $field_instances['bean-wetkit_bean-field_bean_taxonomy'] = array(
     'bundle' => 'wetkit_bean',
     'default_value' => NULL,
@@ -44,7 +44,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_bean-field_bean_wetkit_body'
+  // Exported field_instance: 'bean-wetkit_bean-field_bean_wetkit_body'.
   $field_instances['bean-wetkit_bean-field_bean_wetkit_body'] = array(
     'bundle' => 'wetkit_bean',
     'default_value' => NULL,
@@ -83,7 +83,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_bean-title_field'
+  // Exported field_instance: 'bean-wetkit_bean-title_field'.
   $field_instances['bean-wetkit_bean-title_field'] = array(
     'bundle' => 'wetkit_bean',
     'default_value' => NULL,
@@ -121,7 +121,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'bean-wetkit_highlight-field_bean_highlight_description'
+  // 'bean-wetkit_highlight-field_bean_highlight_description'.
   $field_instances['bean-wetkit_highlight-field_bean_highlight_description'] = array(
     'bundle' => 'wetkit_highlight',
     'default_value' => NULL,
@@ -160,7 +160,8 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_highlight-field_bean_highlight_image'
+  // Exported field_instance:
+  // 'bean-wetkit_highlight-field_bean_highlight_image'.
   $field_instances['bean-wetkit_highlight-field_bean_highlight_image'] = array(
     'bundle' => 'wetkit_highlight',
     'deleted' => 0,
@@ -220,7 +221,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_highlight-field_bean_highlight_link'
+  // Exported field_instance: 'bean-wetkit_highlight-field_bean_highlight_link'.
   $field_instances['bean-wetkit_highlight-field_bean_highlight_link'] = array(
     'bundle' => 'wetkit_highlight',
     'default_value' => NULL,
@@ -277,7 +278,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'bean-wetkit_highlight-field_bean_highlight_link_text'
+  // 'bean-wetkit_highlight-field_bean_highlight_link_text'.
   $field_instances['bean-wetkit_highlight-field_bean_highlight_link_text'] = array(
     'bundle' => 'wetkit_highlight',
     'default_value' => NULL,
@@ -316,7 +317,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_highlight-title_field'
+  // Exported field_instance: 'bean-wetkit_highlight-title_field'.
   $field_instances['bean-wetkit_highlight-title_field'] = array(
     'bundle' => 'wetkit_highlight',
     'default_value' => NULL,
@@ -354,7 +355,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_link-field_bean_link'
+  // Exported field_instance: 'bean-wetkit_link-field_bean_link'.
   $field_instances['bean-wetkit_link-field_bean_link'] = array(
     'bundle' => 'wetkit_link',
     'default_value' => NULL,
@@ -411,7 +412,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_link-title_field'
+  // Exported field_instance: 'bean-wetkit_link-title_field'.
   $field_instances['bean-wetkit_link-title_field'] = array(
     'bundle' => 'wetkit_link',
     'default_value' => NULL,
@@ -449,7 +450,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_media-field_bean_media_collection'
+  // Exported field_instance: 'bean-wetkit_media-field_bean_media_collection'.
   $field_instances['bean-wetkit_media-field_bean_media_collection'] = array(
     'bundle' => 'wetkit_media',
     'default_value' => NULL,
@@ -481,7 +482,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_media-title_field'
+  // Exported field_instance: 'bean-wetkit_media-title_field'.
   $field_instances['bean-wetkit_media-title_field'] = array(
     'bundle' => 'wetkit_media',
     'default_value' => NULL,
@@ -523,7 +524,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_rate-title_field'
+  // Exported field_instance: 'bean-wetkit_rate-title_field'.
   $field_instances['bean-wetkit_rate-title_field'] = array(
     'bundle' => 'wetkit_rate',
     'default_value' => NULL,
@@ -561,7 +562,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_search-field_bean_search_path'
+  // Exported field_instance: 'bean-wetkit_search-field_bean_search_path'.
   $field_instances['bean-wetkit_search-field_bean_search_path'] = array(
     'bundle' => 'wetkit_search',
     'default_value' => NULL,
@@ -600,7 +601,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_search-field_bean_taxonomy'
+  // Exported field_instance: 'bean-wetkit_search-field_bean_taxonomy'.
   $field_instances['bean-wetkit_search-field_bean_taxonomy'] = array(
     'bundle' => 'wetkit_search',
     'default_value' => NULL,
@@ -634,7 +635,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_search-field_bean_wetkit_body'
+  // Exported field_instance: 'bean-wetkit_search-field_bean_wetkit_body'.
   $field_instances['bean-wetkit_search-field_bean_wetkit_body'] = array(
     'bundle' => 'wetkit_search',
     'default_value' => NULL,
@@ -674,7 +675,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_search-title_field'
+  // Exported field_instance: 'bean-wetkit_search-title_field'.
   $field_instances['bean-wetkit_search-title_field'] = array(
     'bundle' => 'wetkit_search',
     'default_value' => NULL,
@@ -712,7 +713,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_share-field_share_widget'
+  // Exported field_instance: 'bean-wetkit_share-field_share_widget'.
   $field_instances['bean-wetkit_share-field_share_widget'] = array(
     'bundle' => 'wetkit_share',
     'default_value' => array(
@@ -751,7 +752,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_share-title_field'
+  // Exported field_instance: 'bean-wetkit_share-title_field'.
   $field_instances['bean-wetkit_share-title_field'] = array(
     'bundle' => 'wetkit_share',
     'default_value' => NULL,
@@ -789,7 +790,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_slide-field_bean_slide_collection'
+  // Exported field_instance: 'bean-wetkit_slide-field_bean_slide_collection'.
   $field_instances['bean-wetkit_slide-field_bean_slide_collection'] = array(
     'bundle' => 'wetkit_slide',
     'default_value' => NULL,
@@ -835,7 +836,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_slide-title_field'
+  // Exported field_instance: 'bean-wetkit_slide-title_field'.
   $field_instances['bean-wetkit_slide-title_field'] = array(
     'bundle' => 'wetkit_slide',
     'default_value' => NULL,
@@ -877,7 +878,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_slideout-field_bean_icon'
+  // Exported field_instance: 'bean-wetkit_slideout-field_bean_icon'.
   $field_instances['bean-wetkit_slideout-field_bean_icon'] = array(
     'bundle' => 'wetkit_slideout',
     'default_value' => NULL,
@@ -913,7 +914,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_slideout-field_bean_wetkit_body'
+  // Exported field_instance: 'bean-wetkit_slideout-field_bean_wetkit_body'.
   $field_instances['bean-wetkit_slideout-field_bean_wetkit_body'] = array(
     'bundle' => 'wetkit_slideout',
     'default_value' => NULL,
@@ -953,7 +954,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_slideout-title_field'
+  // Exported field_instance: 'bean-wetkit_slideout-title_field'.
   $field_instances['bean-wetkit_slideout-title_field'] = array(
     'bundle' => 'wetkit_slideout',
     'default_value' => NULL,
@@ -996,7 +997,7 @@ function wetkit_bean_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'bean-wetkit_twitter-title_field'
+  // Exported field_instance: 'bean-wetkit_twitter-title_field'.
   $field_instances['bean-wetkit_twitter-title_field'] = array(
     'bundle' => 'wetkit_twitter',
     'default_value' => NULL,
@@ -1034,7 +1035,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_media_collection-field_media_caption'
+  // 'field_collection_item-field_bean_media_collection-field_media_caption'.
   $field_instances['field_collection_item-field_bean_media_collection-field_media_caption'] = array(
     'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
@@ -1088,7 +1089,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_media_collection-field_media_file'
+  // 'field_collection_item-field_bean_media_collection-field_media_file'.
   $field_instances['field_collection_item-field_bean_media_collection-field_media_file'] = array(
     'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
@@ -1142,7 +1143,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_media_collection-field_media_poster'
+  // 'field_collection_item-field_bean_media_collection-field_media_poster'.
   $field_instances['field_collection_item-field_bean_media_collection-field_media_poster'] = array(
     'bundle' => 'field_bean_media_collection',
     'deleted' => 0,
@@ -1202,7 +1203,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_slide_collection-field_slide_headline'
+  // 'field_collection_item-field_bean_slide_collection-field_slide_headline'.
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_headline'] = array(
     'bundle' => 'field_bean_slide_collection',
     'default_value' => NULL,
@@ -1242,7 +1243,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_slide_collection-field_slide_image'
+  // 'field_collection_item-field_bean_slide_collection-field_slide_image'.
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_image'] = array(
     'bundle' => 'field_bean_slide_collection',
     'deleted' => 0,
@@ -1253,7 +1254,7 @@ function wetkit_bean_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => 'highlight',
+          'image_style' => '',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -1313,7 +1314,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_slide_collection-field_slide_link'
+  // 'field_collection_item-field_bean_slide_collection-field_slide_link'.
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_link'] = array(
     'bundle' => 'field_bean_slide_collection',
     'default_value' => NULL,
@@ -1377,7 +1378,7 @@ function wetkit_bean_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_bean_slide_collection-field_slide_teaser'
+  // 'field_collection_item-field_bean_slide_collection-field_slide_teaser'.
   $field_instances['field_collection_item-field_bean_slide_collection-field_slide_teaser'] = array(
     'bundle' => 'field_bean_slide_collection',
     'default_value' => NULL,
