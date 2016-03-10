@@ -18,6 +18,7 @@ class WetKitTwitterBean extends BeanPlugin {
         'search_query' => '',
         'widget_id' => '',
         'tweet_limit' => '',
+        'widget_height' => '',
       ),
     );
 
@@ -117,6 +118,13 @@ class WetKitTwitterBean extends BeanPlugin {
       '#options' => array('' => drupal_map_assoc(range(1, 20))),
       '#description' => t('Fix the size of a timeline to a preset number of Tweets between 1 and 20. The timeline will render the specified number of Tweets from the timeline, expanding the height of the widget to display all Tweets without scrolling.'),
     );
+    
+    $form['twitter_settings']['widget_height'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Widget Height'),
+      '#default_value' => isset($bean->twitter_settings['widget_height']) ? $bean->twitter_settings['widget_height'] : '',
+      '#description' => t('This is where you would select the height of your twitter widget. If widget height is selected, your tweet limit will NOT work. '),
+    );
 
     return $form;
   }
@@ -134,6 +142,7 @@ class WetKitTwitterBean extends BeanPlugin {
     $username = isset($bean->twitter_settings['username']) ? $bean->twitter_settings['username'] : '';
     $search_query = isset($bean->twitter_settings['search_query']) ? $bean->twitter_settings['search_query'] : '';
     $tweet_limit = isset($bean->twitter_settings['tweet_limit']) ? 'data-tweet-limit="' . $bean->twitter_settings['tweet_limit'] . '"' : '';
+    $widget_height = isset($bean->twitter_settings['widget_height']) ? $bean->twitter_settings['widget_height'] : '';
 
     // Twitter method.
     $url = "https://twitter.com/";
@@ -155,7 +164,9 @@ class WetKitTwitterBean extends BeanPlugin {
     // Rendered markup.
     $markup = '<section><div class="wb-twitter ' . $custom_css . ' ' . $span . '">';
     $markup .= (empty($title)) ? '' : '<h2>' . $title . '</h2>' ;
-    $markup .= '<a class="twitter-timeline" href="' . $url . '" data-widget-id="' . $widget_id . '" ' . $tweet_limit . '>Tweets</a>';
+    $markup .= '<a class="twitter-timeline" height="' . $widget_height . '" href="' . $url . '" data-widget-id="' . $widget_id . '" ';
+    $markup .= (empty($widget_height)) ? $tweet_limit :  '';
+    $markup .= '>Tweets</a>';
     $markup .= '</div></section>';
 
     $content['share_twitter']['#markup'] = $markup;
